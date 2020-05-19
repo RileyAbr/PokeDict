@@ -1,8 +1,12 @@
 @import "./reset.css";
 
 :root {
+    /* Background */
     --bg-home-green: #55a69c;
     --bg-card-white: #ffffff;
+
+    /* Inputs */
+    --input-green: #4e988f;
 }
 
 * {

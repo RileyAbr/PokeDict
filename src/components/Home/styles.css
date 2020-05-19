@@ -5,6 +5,14 @@
     background-color: var(--bg-home-green);
 }
 
+.nav-arrow {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    text-align: center;
+    background: var(--input-green);
+}
+
 .gallery-wrapper {
     margin: 0 70px;
     display: flex;
