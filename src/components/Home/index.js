@@ -47,7 +47,11 @@ class Home extends React.Component {
             <div className="nav-arrow">&lt;</div>
           </NavLink>
           <div>
-            <input type="text" placeholder="🔎 Pokedex"></input>
+            <input
+              className="nav-search-input"
+              type="text"
+              placeholder="Pokédex"
+            ></input>
           </div>
 
           <NavLink onClick={this.forwardPage} to={"/" + this.state.page}>
