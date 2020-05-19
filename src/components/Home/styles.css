@@ -31,6 +31,15 @@
   padding: 10px 5px;
   color: var(--font-white);
 }
+.nav-search-input:active,
+.nav-search-input:hover,
+.nav-search-input:focus {
+  outline: 0;
+  -webkit-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+  -moz-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+  box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+}
+
 .nav-search-input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--font-dark-green);
