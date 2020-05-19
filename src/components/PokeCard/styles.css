@@ -1,0 +1,6 @@
+.card-container {
+    background-color: var(--bg-card-white);
+    height: 350px;
+    width: 300px;
+    margin: 10px;
+}

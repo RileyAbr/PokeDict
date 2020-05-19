@@ -1,0 +1,10 @@
+@import "./reset.css";
+
+:root {
+    --bg-home-green: #55a69c;
+    --bg-card-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}

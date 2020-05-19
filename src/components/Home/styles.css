@@ -1,0 +1,13 @@
+.home-wrapper {
+    height: 100vh;
+    max-height: 100vh;
+    background-color: var(--bg-home-green);
+}
+
+.gallery-wrapper {
+    margin: 0 70px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+}
