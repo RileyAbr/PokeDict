@@ -9,10 +9,15 @@
 
 .card-name {
   font-size: 1.1rem;
-  /* margin: 1.3rem 0; */
   padding: 1.3rem 2rem;
   font-weight: bold;
   border-bottom: solid 1px var(--border-grey);
+}
+
+.card-sprite {
+  display: block;
+  margin: 0 auto;
+  height: 225px;
 }
 
 .card-types {
@@ -22,7 +27,7 @@
 }
 
 .card-type {
-  margin: 2px;
+  margin: 4px 3px;
   padding: 3px;
   border-radius: 3px;
   border: solid 1px var(--border-grey);

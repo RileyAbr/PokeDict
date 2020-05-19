@@ -14,11 +14,15 @@ class Home extends React.Component {
   };
 
   backwardPage = () => {
-    this.setState({ page: this.state.page - 1 });
+    if (this.state.page > 0) {
+      this.setState({ page: this.state.page - 1 });
+    }
+    console.log(this.state.page);
   };
 
   forwardPage = () => {
     this.setState({ page: this.state.page + 1 });
+    console.log(this.state.page);
   };
 
   componentDidMount() {
@@ -36,20 +40,20 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home-wrapper">
+      <main className="home-wrapper">
         {/* Navigation Section */}
-        <div>
-          <NavLink to={"/" + this.state.page} onClick={this.backwardPage}>
+        <nav className="nav-wrapper">
+          <NavLink onClick={this.backwardPage} to={"/" + this.state.page}>
             <div className="nav-arrow">&lt;</div>
           </NavLink>
           <div>
             <input type="text" placeholder="🔎 Pokedex"></input>
           </div>
 
-          <NavLink to={"/" + this.state.page} onClick={this.forwardPage}>
+          <NavLink onClick={this.forwardPage} to={"/" + this.state.page}>
             <div className="nav-arrow">&gt;</div>
           </NavLink>
-        </div>
+        </nav>
 
         {/* Pokemon Cards */}
         <div className="gallery-wrapper">
@@ -62,7 +66,7 @@ class Home extends React.Component {
             />
           ))}
         </div>
-      </div>
+      </main>
     );
   }
 }
