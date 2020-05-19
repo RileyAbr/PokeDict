@@ -8,7 +8,14 @@ import PokeCard from "../PokeCard";
 import pokeData from "./mockData.json";
 
 const pokemonList = pokeData.data.map((element) => {
-  return <PokeCard />;
+  return (
+    <PokeCard
+      id={element.id}
+      name={element.name}
+      image={element.image}
+      types={element.types}
+    />
+  );
 });
 
 function Home() {

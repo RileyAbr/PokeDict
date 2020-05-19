@@ -2,14 +2,15 @@ import React from "react";
 
 import "./styles.css";
 
-function PokeCard() {
+function PokeCard(props) {
   return (
     <div className="card-container">
-      <h2>Pokemon-Name</h2>
-      <img src="https://via.placeholder.com/96" alt={"pokemon-name"} />
+      <h2>{props.name}</h2>
+      <img src={props.image} alt={props.name} />
       <div>
-        <span>Type 1</span>
-        <span>Type 2</span>
+        <span>{props.types[0]}</span>
+        &nbsp;
+        <span>{props.types[1]}</span>
       </div>
     </div>
   );
