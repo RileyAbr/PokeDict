@@ -6,7 +6,7 @@ function PokeCard() {
   return (
     <div className="card-container">
       <h2>Pokemon-Name</h2>
-      <img src="" alt={"pokemon-name"} />
+      <img src="https://via.placeholder.com/96" alt={"pokemon-name"} />
       <div>
         <span>Type 1</span>
         <span>Type 2</span>
