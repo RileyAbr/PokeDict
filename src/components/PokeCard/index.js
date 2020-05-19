@@ -4,7 +4,7 @@ import "./styles.css";
 
 function PokeCard(props) {
   return (
-    <div className="card-container">
+    <article className="card-container">
       {/* Pokemon name */}
       <h2 className="card-name">{props.name}</h2>
 
@@ -20,7 +20,7 @@ function PokeCard(props) {
           <div className="card-type">{props.types[1]}</div>
         )}
       </div>
-    </div>
+    </article>
   );
 }
 
