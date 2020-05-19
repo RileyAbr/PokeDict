@@ -5,12 +5,20 @@ import "./styles.css";
 function PokeCard(props) {
   return (
     <div className="card-container">
+      {/* Pokemon name */}
       <h2 className="card-name">{props.name}</h2>
-      <img src={props.image} alt={props.name} />
-      <div>
-        <span>{props.types[0]}</span>
-        &nbsp;
-        <span>{props.types[1]}</span>
+
+      {/* Pokemon Sprite */}
+      <img className="card-sprite" src={props.image} alt={props.name} />
+
+      {/* Pokemon Types */}
+      <div className="card-types">
+        {props.types[0] != null && (
+          <div className="card-type">{props.types[0]}</div>
+        )}
+        {props.types[1] != null && (
+          <div className="card-type">{props.types[1]}</div>
+        )}
       </div>
     </div>
   );

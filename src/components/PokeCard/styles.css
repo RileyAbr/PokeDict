@@ -14,3 +14,18 @@
   font-weight: bold;
   border-bottom: solid 1px var(--border-grey);
 }
+
+.card-types {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+
+.card-type {
+  margin: 2px;
+  padding: 3px;
+  border-radius: 3px;
+  border: solid 1px var(--border-grey);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
