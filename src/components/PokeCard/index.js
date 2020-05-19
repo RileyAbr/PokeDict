@@ -5,7 +5,7 @@ import "./styles.css";
 function PokeCard(props) {
   return (
     <div className="card-container">
-      <h2>{props.name}</h2>
+      <h2 className="card-name">{props.name}</h2>
       <img src={props.image} alt={props.name} />
       <div>
         <span>{props.types[0]}</span>

@@ -1,6 +1,16 @@
 .card-container {
-    background-color: var(--bg-card-white);
-    height: 350px;
-    width: 300px;
-    margin: 10px;
+  background-color: var(--bg-card-white);
+  height: 350px;
+  width: 300px;
+  margin: 10px;
+  font-family: var(--font-standard);
+  border-radius: 3px;
+}
+
+.card-name {
+  font-size: 1.1rem;
+  /* margin: 1.3rem 0; */
+  padding: 1.3rem 2rem;
+  font-weight: bold;
+  border-bottom: solid 1px var(--border-grey);
 }
