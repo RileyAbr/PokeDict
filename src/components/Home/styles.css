@@ -4,6 +4,14 @@
   min-height: 100vh;
   background-color: var(--bg-home-green);
   font-family: var(--font-standard);
+  padding: 5px;
+}
+
+.nav-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .nav-arrow {
@@ -13,6 +21,14 @@
   text-align: center;
   font-family: var(--font-standard);
   background: var(--input-green);
+}
+
+.nav-search-input {
+  background-color: var(--input-green);
+  font-size: 5rem;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 5px;
 }
 
 .gallery-wrapper {
