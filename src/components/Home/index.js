@@ -5,6 +5,12 @@ import "./styles.css";
 // Components Import
 import PokeCard from "../PokeCard";
 
+import pokeData from "./mockData.json";
+
+const pokemonList = pokeData.data.map((element) => {
+  return <PokeCard />;
+});
+
 function Home() {
   return (
     <div className="home-wrapper">
@@ -16,17 +22,9 @@ function Home() {
         </div>
         <div>Right Arrow</div>
       </div>
+
       {/* Pokemon Cards */}
-      <div className="gallery-wrapper">
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-        <PokeCard />
-      </div>
+      <div className="gallery-wrapper">{pokemonList}</div>
     </div>
   );
 }
