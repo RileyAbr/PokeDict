@@ -1,6 +1,4 @@
 .home-wrapper {
-  /* height: 100vh;
-    max-height: 100vh; */
   min-height: 100vh;
   background-color: var(--bg-home-green);
   font-family: var(--font-standard);
@@ -23,13 +21,24 @@
   font-family: var(--font-standard);
   background: var(--button-green);
 }
+.nav-arrow:active,
+.nav-arrow:hover,
+.nav-arrow-:focus {
+  outline: 0;
+  -webkit-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+  -moz-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+  box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
+}
 
 .nav-arrow-icon {
   border: solid var(--font-white);
   border-width: 0 5px 5px 0;
   display: inline-block;
   padding: 5px;
+  position: relative;
+  top: 26px;
 }
+
 .nav-arrow-left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);

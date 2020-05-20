@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./styles.css";
@@ -8,7 +9,7 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    page: 1,
+    page: parseInt(this.props.location.pathname.slice(-1)),
     maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
@@ -48,6 +49,7 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
+    this.setState({ page: parseInt(this.props.location.pathname.slice(-1)) });
     this.getPokemonList();
   }
 
@@ -68,9 +70,13 @@ class Home extends React.Component {
       <main className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <button onClick={this.backwardPage} className="nav-arrow">
+          <Link
+            to={`/${this.state.page - 1}`}
+            onClick={this.backwardPage}
+            className="nav-arrow"
+          >
             <i className="nav-arrow-icon nav-arrow-left" />
-          </button>
+          </Link>
           <label>
             <input
               className="nav-search-input"
@@ -79,22 +85,28 @@ class Home extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </label>
-          <button onClick={this.forwardPage} className="nav-arrow">
+          <Link
+            to={`/${this.state.page + 1}`}
+            onClick={this.forwardPage}
+            className="nav-arrow"
+          >
             <i className="nav-arrow-icon nav-arrow-right" />
-          </button>
+          </Link>
         </nav>
 
         {/* Pokemon Cards */}
-        <div className="gallery-wrapper">
-          {filteredPokemonList.map((element) => (
-            <PokeCard
-              key={element.id}
-              name={element.name}
-              image={element.image}
-              types={element.types}
-            />
-          ))}
-        </div>
+        <Link>
+          <div className="gallery-wrapper">
+            {filteredPokemonList.map((element) => (
+              <PokeCard
+                key={element.id}
+                name={element.name}
+                image={element.image}
+                types={element.types}
+              />
+            ))}
+          </div>
+        </Link>
       </main>
     );
   }
