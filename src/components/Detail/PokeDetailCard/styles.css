@@ -5,3 +5,22 @@
   font-family: var(--font-standard);
   border-radius: 3px;
 }
+
+.detail-card-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 25px;
+  border-bottom: solid 1px var(--border-grey);
+}
+
+.detail-card-name {
+  font-weight: bold;
+  display: inline;
+}
+
+.detail-card-id {
+  color: var(--font-grey);
+  display: inline;
+}
