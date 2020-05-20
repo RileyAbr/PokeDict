@@ -1,0 +1,6 @@
+main {
+  min-height: 100vh;
+  background-color: var(--bg-home-green);
+  font-family: var(--font-standard);
+  padding: 5px;
+}

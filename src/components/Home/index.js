@@ -67,7 +67,7 @@ class Home extends React.Component {
     });
 
     return (
-      <main className="home-wrapper">
+      <div className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
           <Link
@@ -105,7 +105,7 @@ class Home extends React.Component {
             />
           ))}
         </div>
-      </main>
+      </div>
     );
   }
 }

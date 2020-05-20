@@ -9,11 +9,13 @@ import Detail from "./components/Detail";
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/pokemon/:name" component={Detail}></Route>
-        <Route path="/:page" component={Home}></Route>
-        <Route path="/" component={Home} exact></Route>
-      </Switch>
+      <main>
+        <Switch>
+          <Route path="/pokemon/:name" component={Detail}></Route>
+          <Route path="/:page" component={Home}></Route>
+          <Route path="/" component={Home} exact></Route>
+        </Switch>
+      </main>
     </BrowserRouter>
   );
 }
