@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import "./styles.css";
@@ -10,19 +9,22 @@ import PokeCard from "../PokeCard";
 class Home extends React.Component {
   state = {
     page: 1,
+    maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
   };
 
   // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
-    if (this.state.page > 0) {
+    if (this.state.page > 1) {
       this.setState({ page: this.state.page - 1 });
     }
     console.log(this.state.page);
   };
   forwardPage = () => {
-    this.setState({ page: this.state.page + 1 });
+    if (this.state.page < this.state.maxPages) {
+      this.setState({ page: this.state.page + 1 });
+    }
     console.log(this.state.page);
   };
 
@@ -31,7 +33,7 @@ class Home extends React.Component {
     this.setState({ searchValue: event.target.value });
   };
 
-  componentDidMount() {
+  getPokemonList = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
         params: {
@@ -40,8 +42,18 @@ class Home extends React.Component {
       })
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        this.setState({ pokemonList });
+        const maxPages = response.data.meta.last_page;
+        this.setState({ pokemonList, maxPages });
       });
+  };
+
+  componentDidMount() {
+    this.getPokemonList();
+  }
+
+  // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
+  componentDidUpdate() {
+    this.getPokemonList();
   }
 
   render() {
@@ -56,11 +68,9 @@ class Home extends React.Component {
       <main className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <NavLink onClick={this.backwardPage} to={"/" + this.state.page}>
-            <div className="nav-arrow">
-              <i class="nav-arrow-icon nav-arrow-left" />
-            </div>
-          </NavLink>
+          <button onClick={this.backwardPage} className="nav-arrow">
+            <i className="nav-arrow-icon nav-arrow-left" />
+          </button>
           <label>
             <input
               className="nav-search-input"
@@ -69,12 +79,9 @@ class Home extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </label>
-
-          <NavLink onClick={this.forwardPage} to={"/" + this.state.page}>
-            <div className="nav-arrow">
-              <i class="nav-arrow-icon nav-arrow-right" />
-            </div>
-          </NavLink>
+          <button onClick={this.forwardPage} className="nav-arrow">
+            <i className="nav-arrow-icon nav-arrow-right" />
+          </button>
         </nav>
 
         {/* Pokemon Cards */}
