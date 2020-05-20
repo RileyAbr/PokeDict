@@ -6,7 +6,7 @@ import "./styles.css";
 function PokeCard(props) {
   return (
     <Link to={`/pokemon/${props.name}`}>
-      <article className="card-container">
+      <article className="card">
         {/* Pokemon name */}
         <h2 className="card-name">{props.name}</h2>
 

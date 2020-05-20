@@ -1,0 +1,7 @@
+.detail-card {
+  background-color: var(--bg-card-white);
+  max-width: 1000px;
+  margin: auto;
+  font-family: var(--font-standard);
+  border-radius: 3px;
+}

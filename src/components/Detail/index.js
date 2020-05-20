@@ -3,6 +3,9 @@ import axios from "axios";
 
 import "./styles.css";
 
+// Components
+import PokeDetailCard from "./PokeDetailCard";
+
 class Detail extends React.Component {
   state = {
     name: this.props.location.pathname.slice(9), //
@@ -36,9 +39,12 @@ class Detail extends React.Component {
     return (
       <div>
         <button onClick={this.goBack}>Go Back</button>
-        Detail Loaded
-        {this.state.pokemon.name}
-        <img src={this.state.pokemon.image} alt={this.state.pokemon.name} />
+        <PokeDetailCard
+          name={this.state.pokemon.name}
+          id={this.state.pokemon.id}
+          image={this.state.pokemon.image}
+          types={this.state.pokemon.types}
+        />
       </div>
     );
   }
