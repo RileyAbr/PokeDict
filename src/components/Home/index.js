@@ -14,20 +14,20 @@ class Home extends React.Component {
     searchValue: "",
   };
 
+  // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
     if (this.state.page > 0) {
       this.setState({ page: this.state.page - 1 });
     }
     console.log(this.state.page);
   };
-
   forwardPage = () => {
     this.setState({ page: this.state.page + 1 });
     console.log(this.state.page);
   };
 
+  //   Detects when the search bar has a value in it and updates the searchValue to match
   searchBarOnChange = (event) => {
-    console.log(event.target.value);
     this.setState({ searchValue: event.target.value });
   };
 
@@ -45,6 +45,7 @@ class Home extends React.Component {
   }
 
   render() {
+    // Compares the list of feteched pokemon against any existing search string from the input box
     const filteredPokemonList = this.state.pokemonList.filter((pokemon) => {
       return pokemon.name
         .toLowerCase()
@@ -56,21 +57,23 @@ class Home extends React.Component {
         {/* Navigation Section */}
         <nav className="nav-wrapper">
           <NavLink onClick={this.backwardPage} to={"/" + this.state.page}>
-            <div className="nav-arrow">&lt;</div>
+            <div className="nav-arrow">
+              <i class="nav-arrow-icon nav-arrow-left" />
+            </div>
           </NavLink>
-          <form>
-            <label>
-              <input
-                className="nav-search-input"
-                type="text"
-                placeholder="Pokédex"
-                onChange={this.searchBarOnChange}
-              ></input>
-            </label>
-          </form>
+          <label>
+            <input
+              className="nav-search-input"
+              type="text"
+              placeholder="Pokédex"
+              onChange={this.searchBarOnChange}
+            ></input>
+          </label>
 
           <NavLink onClick={this.forwardPage} to={"/" + this.state.page}>
-            <div className="nav-arrow">&gt;</div>
+            <div className="nav-arrow">
+              <i class="nav-arrow-icon nav-arrow-right" />
+            </div>
           </NavLink>
         </nav>
 
