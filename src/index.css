@@ -22,6 +22,7 @@
   box-sizing: border-box;
 }
 
+/* Removes all link styling, might be too drastic and need changes later */
 a {
   text-decoration: none;
   color: inherit;
