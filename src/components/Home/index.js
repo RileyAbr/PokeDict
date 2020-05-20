@@ -11,6 +11,7 @@ class Home extends React.Component {
   state = {
     page: 1,
     pokemonList: [],
+    searchValue: "",
   };
 
   backwardPage = () => {
@@ -23,6 +24,11 @@ class Home extends React.Component {
   forwardPage = () => {
     this.setState({ page: this.state.page + 1 });
     console.log(this.state.page);
+  };
+
+  searchBarOnChange = (event) => {
+    console.log(event.target.value);
+    this.setState({ searchValue: event.target.value });
   };
 
   componentDidMount() {
@@ -39,6 +45,12 @@ class Home extends React.Component {
   }
 
   render() {
+    const filteredPokemonList = this.state.pokemonList.filter((pokemon) => {
+      return pokemon.name
+        .toLowerCase()
+        .includes(this.state.searchValue.toLowerCase());
+    });
+
     return (
       <main className="home-wrapper">
         {/* Navigation Section */}
@@ -46,13 +58,16 @@ class Home extends React.Component {
           <NavLink onClick={this.backwardPage} to={"/" + this.state.page}>
             <div className="nav-arrow">&lt;</div>
           </NavLink>
-          <div>
-            <input
-              className="nav-search-input"
-              type="text"
-              placeholder="Pokédex"
-            ></input>
-          </div>
+          <form>
+            <label>
+              <input
+                className="nav-search-input"
+                type="text"
+                placeholder="Pokédex"
+                onChange={this.searchBarOnChange}
+              ></input>
+            </label>
+          </form>
 
           <NavLink onClick={this.forwardPage} to={"/" + this.state.page}>
             <div className="nav-arrow">&gt;</div>
@@ -61,7 +76,7 @@ class Home extends React.Component {
 
         {/* Pokemon Cards */}
         <div className="gallery-wrapper">
-          {this.state.pokemonList.map((element) => (
+          {filteredPokemonList.map((element) => (
             <PokeCard
               key={element.id}
               name={element.name}
