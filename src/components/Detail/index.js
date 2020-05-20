@@ -1,16 +1,18 @@
 import React from "react";
 
-function Detail(props) {
-  let goBack = () => {
-    props.history.goBack();
+class Detail extends React.Component {
+  goBack = () => {
+    this.props.history.goBack();
   };
 
-  return (
-    <div>
-      <button onClick={goBack}>Go Back</button>
-      Detail Loaded
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <button onClick={this.goBack}>Go Back</button>
+        Detail Loaded
+      </div>
+    );
+  }
 }
 
 export default Detail;
