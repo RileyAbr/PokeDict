@@ -1,7 +1,16 @@
 import React from "react";
 
-function Detail() {
-  return <div>Detail Loaded</div>;
+function Detail(props) {
+  let goBack = () => {
+    props.history.goBack();
+  };
+
+  return (
+    <div>
+      <button onClick={goBack}>Go Back</button>
+      Detail Loaded
+    </div>
+  );
 }
 
 export default Detail;

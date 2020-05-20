@@ -10,8 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/:page" component={Home}></Route>
         <Route path="/pokemon/:name" component={Detail}></Route>
+        <Route path="/:page" component={Home}></Route>
         <Route path="/" component={Home} exact></Route>
       </Switch>
     </BrowserRouter>

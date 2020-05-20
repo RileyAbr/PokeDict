@@ -95,18 +95,16 @@ class Home extends React.Component {
         </nav>
 
         {/* Pokemon Cards */}
-        <Link>
-          <div className="gallery-wrapper">
-            {filteredPokemonList.map((element) => (
-              <PokeCard
-                key={element.id}
-                name={element.name}
-                image={element.image}
-                types={element.types}
-              />
-            ))}
-          </div>
-        </Link>
+        <div className="gallery-wrapper">
+          {filteredPokemonList.map((element) => (
+            <PokeCard
+              key={element.id}
+              name={element.name}
+              image={element.image}
+              types={element.types}
+            />
+          ))}
+        </div>
       </main>
     );
   }
