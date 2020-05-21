@@ -1,9 +1,10 @@
 .detail-card {
   background-color: var(--bg-card-white);
-  max-width: 1000px;
+  max-width: 700px;
   margin: auto;
   font-family: var(--font-standard);
   border-radius: 3px;
+  padding: 10px;
 }
 
 .detail-card-header {
@@ -11,7 +12,7 @@
   flex-flow: row nowrap;
   align-items: baseline;
   justify-content: space-between;
-  padding: 20px 25px;
+  padding: 10px 10px 15px;
   border-bottom: solid 1px var(--border-grey);
 }
 
@@ -23,4 +24,49 @@
 .detail-card-id {
   color: var(--font-grey);
   display: inline;
+}
+
+.detail-card-body {
+  padding: 0 25px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.detail-card-sprite {
+  width: 200px;
+  height: auto;
+}
+
+.detail-card-stats {
+  /* Testing value */
+  border: 2px solid var(--border-grey);
+  border-radius: 3px;
+}
+
+.detail-card-bio {
+  padding: 0px 20px;
+}
+
+.detail-card-classification {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.detail-card-description {
+  line-height: 1.2rem;
+}
+
+.detail-card-section-header {
+  background-color: var(--bg-home-green);
+  text-align: left;
+  width: 100%;
+  color: var(--font-white);
+  margin: 20px 0;
+  padding: 0.4rem 1rem;
+}
+
+.detail-card-profile {
+  display: flex;
+  flex-flow: row wrap;
 }
