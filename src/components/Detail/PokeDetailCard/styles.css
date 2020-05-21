@@ -19,6 +19,7 @@
 .detail-card-name {
   font-weight: bold;
   display: inline;
+  margin-right: 0.5rem;
 }
 
 .detail-card-id {
@@ -69,4 +70,13 @@
 .detail-card-profile {
   display: flex;
   flex-flow: row wrap;
+}
+
+td {
+  padding: 0.5rem 0;
+  padding-right: 20px;
+}
+
+td:nth-child(2n + 1) {
+  font-weight: bold;
 }
