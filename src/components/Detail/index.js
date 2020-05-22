@@ -38,7 +38,12 @@ class Detail extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.goBack}>Go Back</button>
+        <button className="detail-back" onClick={this.goBack}>
+          <i className="detail-back-icon"></i>
+        </button>
+
+        <h1 className="detail-masthead">{this.state.pokemon.name}</h1>
+
         <PokeDetailCard
           name={this.state.pokemon.name}
           id={this.state.pokemon.id}
