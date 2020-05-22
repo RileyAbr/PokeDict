@@ -41,7 +41,7 @@ function PokeDetailCard(props) {
 
         {/* Profile section */}
         <h4 className="detail-card-section-header">Profile</h4>
-        <section className="detail-card-profile">
+        <section className="detail-card-section detail-card-profile">
           <table>
             <tbody>
               <tr>

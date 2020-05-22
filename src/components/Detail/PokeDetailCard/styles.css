@@ -67,6 +67,10 @@
   padding: 0.4rem 1rem;
 }
 
+.detail-card-section {
+  padding: 4px;
+}
+
 .detail-card-profile {
   display: flex;
   flex-flow: row wrap;
