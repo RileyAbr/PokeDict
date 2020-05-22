@@ -9,7 +9,7 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    page: parseInt(this.props.location.pathname.slice(-1)),
+    page: 1,
     maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
@@ -49,7 +49,7 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ page: parseInt(this.props.location.pathname.slice(-1)) });
+    // this.setState({ page: parseInt(this.props.location.pathname.slice(-1)) });
     this.getPokemonList();
   }
 
