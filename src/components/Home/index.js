@@ -31,7 +31,8 @@ class Home extends React.Component {
 
   //   Detects when the search bar has a value in it and updates the searchValue to match
   searchBarOnChange = (event) => {
-    this.setState({ searchValue: event.target.value });
+    this.getSearchedPokemonList(event.target.value);
+    // this.setState({ searchValue: event.target.value });
   };
 
   getPokemonList = () => {
@@ -48,15 +49,29 @@ class Home extends React.Component {
       });
   };
 
+  getSearchedPokemonList = (search) => {
+    axios
+      .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
+        params: {
+          name: search, //this.state.name,
+        },
+      })
+      .then((response) => {
+        const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
+        // The API returns an array of pokemom. When there is only a single match, it will be at index 0
+        this.setState({ pokemonList });
+      });
+  };
+
   componentDidMount() {
     // this.setState({ page: parseInt(this.props.location.pathname.slice(-1)) });
     this.getPokemonList();
   }
 
   // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
-  componentDidUpdate() {
-    this.getPokemonList();
-  }
+  //   componentDidUpdate() {
+  //     this.getPokemonList();
+  //   }
 
   render() {
     // Compares the list of feteched pokemon against any existing search string from the input box
