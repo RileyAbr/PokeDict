@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 
 // Components
@@ -12,8 +12,13 @@ function App() {
       <main>
         <Switch>
           <Route path="/pokemon/:name" component={Detail}></Route>
-          <Route path="/:page" component={Home}></Route>
-          <Route path="/" component={Home} exact></Route>
+          <Route path="/home/:page" component={Home}></Route>
+          <Route exact path="/">
+            <Redirect to="home/1" />
+          </Route>
+          <Route path="*">
+            <Redirect to="/home/1"></Redirect>
+          </Route>
         </Switch>
       </main>
     </BrowserRouter>

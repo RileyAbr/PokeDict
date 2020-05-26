@@ -32,7 +32,6 @@ class Detail extends React.Component {
 
   componentDidMount() {
     this.getPokemon();
-    console.log(this.state.name);
   }
 
   render() {

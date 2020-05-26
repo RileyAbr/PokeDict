@@ -9,7 +9,7 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    page: 1,
+    page: this.props.match.params.page,
     maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
@@ -18,14 +18,16 @@ class Home extends React.Component {
   // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
     if (this.state.page > 1) {
-      this.setState({ page: this.state.page - 1 });
+      this.setState({ page: parseInt(this.state.page) - 1 });
     }
+    this.getPokemonList();
     console.log(this.state.page);
   };
   forwardPage = () => {
     if (this.state.page < this.state.maxPages) {
-      this.setState({ page: this.state.page + 1 });
+      this.setState({ page: parseInt(this.state.page) + 1 });
     }
+    this.getPokemonList();
     console.log(this.state.page);
   };
 
@@ -86,22 +88,20 @@ class Home extends React.Component {
         {/* Navigation Section */}
         <nav className="nav-wrapper">
           <Link
-            to={`/${this.state.page - 1}`}
+            to={`/home/${this.state.page}`}
             onClick={this.backwardPage}
             className="nav-arrow"
           >
             <i className="nav-arrow-icon nav-arrow-left" />
           </Link>
-          <label>
-            <input
-              className="nav-search-input"
-              type="text"
-              placeholder="Pokédex"
-              onChange={this.searchBarOnChange}
-            ></input>
-          </label>
+          <input
+            className="nav-search-input"
+            type="text"
+            placeholder="Pokédex"
+            onChange={this.searchBarOnChange}
+          ></input>
           <Link
-            to={`/${this.state.page + 1}`}
+            to={`/home/${this.state.page}`}
             onClick={this.forwardPage}
             className="nav-arrow"
           >
