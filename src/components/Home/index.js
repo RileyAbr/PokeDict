@@ -37,6 +37,17 @@ class Home extends React.Component {
     // this.setState({ searchValue: event.target.value });
   };
 
+  searchBarSubmit = (event) => {
+    if (event) event.preventDefault();
+    const searchValue = this.input.value;
+
+    if (searchValue != null) {
+      this.props.match.params.page = searchValue;
+    }
+
+    console.log(this.input.value);
+  };
+
   getPokemonList = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
@@ -94,12 +105,17 @@ class Home extends React.Component {
           >
             <i className="nav-arrow-icon nav-arrow-left" />
           </Link>
-          <input
-            className="nav-search-input"
-            type="text"
-            placeholder="Pokédex"
-            onChange={this.searchBarOnChange}
-          ></input>
+          <form onSubmit={this.searchBarSubmit}>
+            <input
+              className="nav-search-input"
+              type="text"
+              placeholder="Pokédex"
+              ref={(element) => {
+                this.input = element;
+              }}
+              //   onChange={this.searchBarOnChange}
+            ></input>
+          </form>
           <Link
             to={`/home/${this.state.page}`}
             onClick={this.forwardPage}

@@ -43,6 +43,10 @@
   -webkit-transform: rotate(-45deg);
 }
 
+.nav-search-label {
+  font-size: 0px;
+}
+
 .nav-search-input {
   min-width: 0;
   background-color: var(--search-green);
@@ -52,7 +56,7 @@
   padding: 10px 5px;
   color: var(--font-white);
 }
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 550px) {
   .nav-search-input {
     font-size: 5rem;
   }
@@ -81,7 +85,7 @@
 }
 
 .gallery-wrapper {
-  margin: 0 5%;
+  margin: 0 4%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;

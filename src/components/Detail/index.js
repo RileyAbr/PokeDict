@@ -8,7 +8,7 @@ import PokeDetailCard from "./PokeDetailCard";
 
 class Detail extends React.Component {
   state = {
-    name: this.props.location.pathname.slice(9), //
+    name: this.props.match.params.name, //
     pokemon: "",
   };
 
