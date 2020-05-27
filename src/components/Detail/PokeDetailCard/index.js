@@ -37,9 +37,6 @@ class PokeDetailCard extends React.Component {
             <h3 className="detail-card-id">#{this.props.id}</h3>
           </div>
           <div>
-            {/* TODO: Reading just props.types works, but if you try to access the types with [0] or .map(), it says it is undefined? */}
-            {this.props.types}
-
             {this.props.types && <div className="a">{this.props.types[0]}</div>}
             {this.props.types && <div className="a">{this.props.types[1]}</div>}
           </div>
@@ -50,7 +47,7 @@ class PokeDetailCard extends React.Component {
             alt={this.props.name}
             className="detail-card-sprite"
           />
-          <Color
+          {/* <Color
             src={"https://intern-pokedex.myriadapps.com/images/pokemon/6.png"}
             crossOrigin="Anonymous"
           >
@@ -64,7 +61,7 @@ class PokeDetailCard extends React.Component {
                 </div>
               );
             }}
-          </Color>
+          </Color> */}
           <div className="detail-card-stats">Pokemon.Stats</div>
 
           {/* Bio section */}

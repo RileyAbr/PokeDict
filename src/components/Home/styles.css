@@ -30,8 +30,8 @@
     border-width: 0 5px 5px 0;
     display: inline-block;
     padding: 5px;
-    /* position: relative;
-  top: 26px; */
+    position: relative;
+    top: 26px;
 }
 
 .nav-arrow-left {
@@ -47,8 +47,12 @@
     font-size: 0px;
 }
 
-.nav-search-input {
+.nav-search-form {
     min-width: 0;
+}
+
+.nav-search-input {
+    width: 100%;
     background-color: var(--search-green);
     font-size: 3rem;
     border: none;
