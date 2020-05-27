@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -15,22 +16,22 @@ class Home extends React.Component {
   };
 
   // Moves the current page in the pagination by the specified parameter
-  goToPage = (pageIncrement) => {
-    this.props.history.push(
-      `/home/${parseInt(this.props.match.params.page) + pageIncrement}`
-    );
-  };
+  //   goToPage = (pageIncrement) => {
+  //     this.props.history.push(
+  //       `/home/${parseInt(this.props.match.params.page) + pageIncrement}`
+  //     );
+  //   };
 
   // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
     if (this.props.match.params.page > 1) {
-      this.goToPage(-1);
+      //   this.goToPage(-1);
       this.getPokemonList();
     }
   };
   forwardPage = () => {
     if (this.props.match.params.page < this.state.maxPages) {
-      this.goToPage(1);
+      //   this.goToPage(1);
       this.getPokemonList();
     }
   };
@@ -91,10 +92,9 @@ class Home extends React.Component {
   }
 
   // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
-  componentDidUpdate(prevState) {
-    if (this.state.pokemonList !== prevState.pokemonList) {
-      //   console.log(this.state.pokemonList);
-      //   console.log(prevState.pokemonList);
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.page !== prevProps.match.params.page) {
+      this.getPokemonList();
     }
   }
 
@@ -114,9 +114,12 @@ class Home extends React.Component {
       <div className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <button onClick={this.backwardPage} className="nav-arrow">
+          <Link
+            to={"/home/" + (parseInt(this.props.match.params.page) - 1)}
+            className="nav-arrow"
+          >
             <i className="nav-arrow-icon nav-arrow-left" />
-          </button>
+          </Link>
           <form
           //   onSubmit={this.searchBarSubmit}
           >
@@ -130,9 +133,12 @@ class Home extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </form>
-          <button onClick={this.forwardPage} className="nav-arrow">
+          <Link
+            to={"/home/" + (parseInt(this.props.match.params.page) + 1)}
+            className="nav-arrow"
+          >
             <i className="nav-arrow-icon nav-arrow-right" />
-          </button>
+          </Link>
         </nav>
 
         {/* Pokemon Cards */}
