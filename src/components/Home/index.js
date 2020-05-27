@@ -15,12 +15,7 @@ class Home extends React.Component {
     searchValue: "",
   };
 
-  //   Detects when the search bar has a value in it and updates the searchValue to match
-  searchBarOnChange = (event) => {
-    this.getSearchedPokemonList(event.target.value);
-    // this.setState({ searchValue: event.target.value });
-  };
-
+  //   This is the most basic function to fetch Pokemon. It fetches based on simply a page number, no additional complications. It is used everytime the gallery is navigated
   getPokemonList = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
@@ -34,6 +29,7 @@ class Home extends React.Component {
       });
   };
 
+  //   This function fetches all intial pokemon, but only the first time the component is rendered. The additional data fetched via this function includes the metadata max number of pages from the API, which is used to make sure the navigation buttons are never out of range
   getIntialPokemonList = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
@@ -48,6 +44,7 @@ class Home extends React.Component {
       });
   };
 
+  //   This function fetches only pokemon that match the search string provided by the input box. It is matching all pokemon names that contain the pattern of letterns provided by the search variable
   getSearchedPokemonList = (search) => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
@@ -62,11 +59,15 @@ class Home extends React.Component {
       });
   };
 
+  //   Detects when the search bar has a value in it and updates the searchValue to match
+  searchBarOnChange = (event) => {
+    this.getSearchedPokemonList(event.target.value);
+  };
+
   componentDidMount() {
     this.getIntialPokemonList();
   }
 
-  // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
   componentDidUpdate(prevProps) {
     if (this.props.match.params.page !== prevProps.match.params.page) {
       this.getPokemonList();
@@ -74,13 +75,6 @@ class Home extends React.Component {
   }
 
   render() {
-    // Compares the list of feteched pokemon against any existing search string from the input box
-    const filteredPokemonList = this.state.pokemonList.filter((pokemon) => {
-      return pokemon.name
-        .toLowerCase()
-        .includes(this.state.searchValue.toLowerCase());
-    });
-
     // These conditional statements are funky, but they are essentially checking if
     // 1. The value is will not be moved out of range--if so set it to the lowest/highest value
     // 2. The value is not already out of range--if so set it to the highest/lowest value
@@ -115,6 +109,7 @@ class Home extends React.Component {
               className="nav-search-input"
               type="text"
               placeholder="Pokédex"
+              // This ensures that the input value is actually passed off to searchBarOnChange()
               ref={(element) => {
                 this.input = element;
               }}
@@ -128,7 +123,7 @@ class Home extends React.Component {
 
         {/* Pokemon Cards */}
         <div className="gallery-wrapper">
-          {filteredPokemonList.map((element) => (
+          {this.state.pokemonList.map((element) => (
             <PokeCard
               key={element.id}
               name={element.name}
