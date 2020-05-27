@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -8,12 +9,9 @@ import PokeDetailCard from "./PokeDetailCard";
 
 class Detail extends React.Component {
   state = {
-    name: this.props.match.params.name, //
+    name: this.props.match.params.name,
     pokemon: "",
-  };
-
-  goBack = () => {
-    this.props.history.goBack();
+    galleryPreviousPage: 1, // 1 is the set default, but will be modified depending on getPokemon()
   };
 
   getPokemon = () => {
@@ -25,8 +23,9 @@ class Detail extends React.Component {
       })
       .then((response) => {
         const pokemon = response.data.data[0]; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        // The API returns an array of pokemom. When there is only a single match, it will be at index 0
-        this.setState({ pokemon });
+        // The API returns an array of pokemon that all match the name string. When there is only a single match (a perfect name), there will be a single pokemon at index 0
+        const galleryPreviousPage = Math.ceil(response.data.data[0].id / 15);
+        this.setState({ pokemon, galleryPreviousPage });
       });
   };
 
@@ -37,9 +36,12 @@ class Detail extends React.Component {
   render() {
     return (
       <div>
-        <button className="detail-back" onClick={this.goBack}>
+        <Link
+          to={"/home/" + this.state.galleryPreviousPage}
+          className="detail-back"
+        >
           <i className="detail-back-icon"></i>
-        </button>
+        </Link>
 
         <h1 className="detail-masthead">{this.state.pokemon.name}</h1>
 

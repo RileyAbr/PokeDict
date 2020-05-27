@@ -30,6 +30,19 @@ class Home extends React.Component {
       })
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
+        this.setState({ pokemonList });
+      });
+  };
+
+  getIntialPokemonList = () => {
+    axios
+      .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
+        params: {
+          page: this.props.match.params.page,
+        },
+      })
+      .then((response) => {
+        const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
         const maxPages = response.data.meta.last_page;
         this.setState({ pokemonList, maxPages });
       });
@@ -44,12 +57,13 @@ class Home extends React.Component {
       })
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
+
         this.setState({ pokemonList });
       });
   };
 
   componentDidMount() {
-    this.getPokemonList();
+    this.getIntialPokemonList();
   }
 
   // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
