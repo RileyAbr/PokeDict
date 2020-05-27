@@ -67,14 +67,21 @@ class Home extends React.Component {
         .includes(this.state.searchValue.toLowerCase());
     });
 
+    const backPageValue =
+      parseInt(this.props.match.params.page) > 1
+        ? parseInt(this.props.match.params.page) - 1
+        : 1;
+
+    const forwardPageValue =
+      parseInt(this.props.match.params.page) < this.state.maxPages
+        ? parseInt(this.props.match.params.page) + 1
+        : this.state.maxPages;
+
     return (
       <div className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <Link
-            to={"/home/" + (parseInt(this.props.match.params.page) - 1)}
-            className="nav-arrow"
-          >
+          <Link to={"/home/" + backPageValue} className="nav-arrow">
             <i className="nav-arrow-icon nav-arrow-left" />
           </Link>
           <form className="nav-search-form">
@@ -88,10 +95,7 @@ class Home extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </form>
-          <Link
-            to={"/home/" + (parseInt(this.props.match.params.page) + 1)}
-            className="nav-arrow"
-          >
+          <Link to={"/home/" + forwardPageValue} className="nav-arrow">
             <i className="nav-arrow-icon nav-arrow-right" />
           </Link>
         </nav>
