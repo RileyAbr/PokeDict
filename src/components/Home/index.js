@@ -9,32 +9,39 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    page: this.props.match.params.page,
+    page: parseInt(this.props.match.params.page),
     maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
   };
 
+  // Moves the current page in the pagination by the specified parameter
+  goToPage = (pageIncrement) => {
+    this.props.history.push(
+      `/home/${parseInt(this.state.page) + pageIncrement}`
+    );
+  };
+
   // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
     if (this.state.page > 1) {
+      this.goToPage(-1);
       this.setState({ page: parseInt(this.state.page) - 1 });
+      this.getPokemonList();
     }
-    this.getPokemonList();
-    console.log(this.state.page);
   };
   forwardPage = () => {
     if (this.state.page < this.state.maxPages) {
+      this.goToPage(1);
       this.setState({ page: parseInt(this.state.page) + 1 });
+      this.getPokemonList();
     }
-    this.getPokemonList();
-    console.log(this.state.page);
   };
 
   //   Detects when the search bar has a value in it and updates the searchValue to match
   searchBarOnChange = (event) => {
     this.getSearchedPokemonList(event.target.value);
-    // this.setState({ searchValue: event.target.value });
+    this.setState({ searchValue: event.target.value });
   };
 
   searchBarSubmit = (event) => {
@@ -42,10 +49,12 @@ class Home extends React.Component {
     const searchValue = this.input.value;
 
     if (searchValue != null) {
-      this.props.match.params.page = searchValue;
+      this.setState({ searchValue });
     }
 
-    console.log(this.input.value);
+    this.props.history.push(`/home/${this.state.searchValue}`);
+
+    this.getSearchedPokemonList();
   };
 
   getPokemonList = () => {
@@ -77,14 +86,23 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    // this.setState({ page: parseInt(this.props.location.pathname.slice(-1)) });
     this.getPokemonList();
+
+    this.backListener = this.props.history.listen((loc, action) => {
+      if (action === "POP") {
+        this.setState({ page: this.props.match.params.page });
+      }
+    });
   }
 
   // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
-  //   componentDidUpdate() {
-  //     this.getPokemonList();
-  //   }
+  componentDidUpdate() {
+    this.getPokemonList();
+  }
+
+  componentWillUnmount() {
+    this.backListener();
+  }
 
   render() {
     // Compares the list of feteched pokemon against any existing search string from the input box
@@ -98,14 +116,12 @@ class Home extends React.Component {
       <div className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <Link
-            to={`/home/${this.state.page}`}
-            onClick={this.backwardPage}
-            className="nav-arrow"
-          >
+          <button onClick={this.backwardPage} className="nav-arrow">
             <i className="nav-arrow-icon nav-arrow-left" />
-          </Link>
-          <form onSubmit={this.searchBarSubmit}>
+          </button>
+          <form
+          //   onSubmit={this.searchBarSubmit}
+          >
             <input
               className="nav-search-input"
               type="text"
@@ -113,16 +129,12 @@ class Home extends React.Component {
               ref={(element) => {
                 this.input = element;
               }}
-              //   onChange={this.searchBarOnChange}
+              onChange={this.searchBarOnChange}
             ></input>
           </form>
-          <Link
-            to={`/home/${this.state.page}`}
-            onClick={this.forwardPage}
-            className="nav-arrow"
-          >
+          <button onClick={this.forwardPage} className="nav-arrow">
             <i className="nav-arrow-icon nav-arrow-right" />
-          </Link>
+          </button>
         </nav>
 
         {/* Pokemon Cards */}
