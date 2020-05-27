@@ -81,14 +81,26 @@ class Home extends React.Component {
         .includes(this.state.searchValue.toLowerCase());
     });
 
+    // These conditional statements are funky, but they are essentially checking if
+    // 1. The value is will not be moved out of range--if so set it to the lowest/highest value
+    // 2. The value is not already out of range--if so set it to the highest/lowest value
+    // 3. If these two conditions are not met, simply set the value to the next page forward or back
     const backPageValue =
       parseInt(this.props.match.params.page) > 1
-        ? parseInt(this.props.match.params.page) - 1
+        ? parseInt(
+            this.props.match.params.page > this.state.maxPages
+              ? this.state.maxPages
+              : parseInt(this.props.match.params.page) - 1
+          )
         : 1;
 
     const forwardPageValue =
       parseInt(this.props.match.params.page) < this.state.maxPages
-        ? parseInt(this.props.match.params.page) + 1
+        ? parseInt(
+            this.props.match.params.page < 1
+              ? 1
+              : parseInt(this.props.match.params.page) + 1
+          )
         : this.state.maxPages;
 
     return (
