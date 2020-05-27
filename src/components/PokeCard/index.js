@@ -15,12 +15,8 @@ function PokeCard(props) {
 
         {/* Pokemon Types */}
         <div className="card-types">
-          {props.types[0] != null && (
-            <div className="card-type">{props.types[0]}</div>
-          )}
-          {props.types[1] != null && (
-            <div className="card-type">{props.types[1]}</div>
-          )}
+          {props.types && <div className="card-type">{props.types[0]}</div>}
+          {props.types && <div className="card-type">{props.types[1]}</div>}
         </div>
       </article>
     </Link>

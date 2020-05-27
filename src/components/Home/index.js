@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./styles.css";
@@ -9,7 +8,7 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    page: parseInt(this.props.match.params.page),
+    // page: parseInt(this.props.match.params.page),
     maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
     searchValue: "",
@@ -18,22 +17,20 @@ class Home extends React.Component {
   // Moves the current page in the pagination by the specified parameter
   goToPage = (pageIncrement) => {
     this.props.history.push(
-      `/home/${parseInt(this.state.page) + pageIncrement}`
+      `/home/${parseInt(this.props.match.params.page) + pageIncrement}`
     );
   };
 
   // Handles modifying the current page with the left and right arrow buttons
   backwardPage = () => {
-    if (this.state.page > 1) {
+    if (this.props.match.params.page > 1) {
       this.goToPage(-1);
-      this.setState({ page: parseInt(this.state.page) - 1 });
       this.getPokemonList();
     }
   };
   forwardPage = () => {
-    if (this.state.page < this.state.maxPages) {
+    if (this.props.match.params.page < this.state.maxPages) {
       this.goToPage(1);
-      this.setState({ page: parseInt(this.state.page) + 1 });
       this.getPokemonList();
     }
   };
@@ -52,8 +49,6 @@ class Home extends React.Component {
       this.setState({ searchValue });
     }
 
-    this.props.history.push(`/home/${this.state.searchValue}`);
-
     this.getSearchedPokemonList();
   };
 
@@ -61,7 +56,7 @@ class Home extends React.Component {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
         params: {
-          page: this.state.page,
+          page: this.props.match.params.page,
         },
       })
       .then((response) => {
@@ -96,8 +91,11 @@ class Home extends React.Component {
   }
 
   // TODO: fix flickering when new page is accessed. I believe it is because this is being called once for the page changing, as well as each card that is updated
-  componentDidUpdate() {
-    this.getPokemonList();
+  componentDidUpdate(prevState) {
+    if (this.state.pokemonList !== prevState.pokemonList) {
+      //   console.log(this.state.pokemonList);
+      //   console.log(prevState.pokemonList);
+    }
   }
 
   componentWillUnmount() {
