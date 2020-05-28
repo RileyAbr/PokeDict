@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import "./styles.css";
 
+// Styled elements
+import Type from "../../styled-elements/Type";
+
 function PokeCard(props) {
   return (
     <Link to={`/pokemon/${props.name}`}>
@@ -15,9 +18,11 @@ function PokeCard(props) {
 
         {/* Pokemon Types */}
         <div className="card-types">
-          {props.types && <div className="card-type">{props.types[0]}</div>}
+          {props.types && props.types[0] && (
+            <Type typeColor={props.types[0]}>{props.types[0]}</Type>
+          )}
           {props.types && props.types[1] && (
-            <div className="card-type">{props.types[1]}</div>
+            <Type typeColor={props.types[1]}>{props.types[1]}</Type>
           )}
         </div>
       </article>

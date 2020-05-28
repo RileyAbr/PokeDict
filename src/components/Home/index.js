@@ -9,10 +9,10 @@ import PokeCard from "../PokeCard";
 
 class Home extends React.Component {
   state = {
-    // page: parseInt(this.props.match.params.page),
-    maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     pokemonList: [],
+    maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
     searchValue: "",
+    isLoading: true,
   };
 
   //   This is the most basic function to fetch Pokemon. It fetches based on simply a page number, no additional complications. It is used everytime the gallery is navigated
@@ -25,7 +25,7 @@ class Home extends React.Component {
       })
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        this.setState({ pokemonList });
+        this.setState({ pokemonList, isLoading: false });
       });
   };
 
@@ -40,7 +40,7 @@ class Home extends React.Component {
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
         const maxPages = response.data.meta.last_page;
-        this.setState({ pokemonList, maxPages });
+        this.setState({ pokemonList, maxPages, isLoading: false });
       });
   };
 
@@ -55,7 +55,7 @@ class Home extends React.Component {
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
 
-        this.setState({ pokemonList });
+        this.setState({ pokemonList, isLoading: false });
       });
   };
 
@@ -122,15 +122,21 @@ class Home extends React.Component {
         </nav>
 
         {/* Pokemon Cards */}
+
         <div className="gallery-wrapper">
-          {this.state.pokemonList.map((element) => (
-            <PokeCard
-              key={element.id}
-              name={element.name}
-              image={element.image}
-              types={element.types}
-            />
-          ))}
+          {/* Loads a temporary loading component if no data is available yet */}
+          {this.state.isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            this.state.pokemonList.map((element) => (
+              <PokeCard
+                key={element.id}
+                name={element.name}
+                image={element.image}
+                types={element.types}
+              />
+            ))
+          )}
         </div>
       </div>
     );

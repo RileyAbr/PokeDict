@@ -27,6 +27,11 @@
   display: inline;
 }
 
+.detail-card-types {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .detail-card-body {
   padding: 0 25px;
   display: flex;
@@ -40,9 +45,10 @@
 }
 
 .detail-card-stats {
-  /* Testing value */
+  /* Testing values */
   border: 2px solid var(--border-grey);
   border-radius: 3px;
+  width: 200px;
 }
 
 .detail-card-bio {

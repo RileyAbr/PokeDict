@@ -3,6 +3,9 @@ import Color from "color-thief-react";
 
 import "./styles.css";
 
+// Styled components
+import Type from "../../../styled-elements/Type";
+
 class PokeDetailCard extends React.Component {
   constructor(props) {
     super(props);
@@ -36,9 +39,13 @@ class PokeDetailCard extends React.Component {
             <h2 className="detail-card-name">{this.props.name}</h2>
             <h3 className="detail-card-id">#{this.props.id}</h3>
           </div>
-          <div>
-            {this.props.types && <div className="a">{this.props.types[0]}</div>}
-            {this.props.types && <div className="a">{this.props.types[1]}</div>}
+          <div className="detail-card-types">
+            {this.props.types && this.props.types[0] && (
+              <Type typeColor={this.props.types[0]}>{this.props.types[0]}</Type>
+            )}
+            {this.props.types && this.props.types[1] && (
+              <Type typeColor={this.props.types[1]}>{this.props.types[1]}</Type>
+            )}
           </div>
         </div>
         <div className="detail-card-body">
