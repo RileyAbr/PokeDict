@@ -13,12 +13,33 @@ const typeColors = {
   grass: "#78C850",
   ground: "#E0C068",
   ice: "#98D8D8",
-  normal: "#e9e9e9",
+  normal: "#C6C6A7",
   poison: "#A040A0",
   psychic: "#F85888",
   rock: "#B8A038",
   steel: "#B8B8D0",
   water: "#6890F0",
+};
+
+const typeBackgroundColors = {
+  bug: "#eff3d8",
+  dark: "#c7bcb8",
+  dragon: "#cbb5fc",
+  electric: "#fdf4ce",
+  fairy: "#fce9ed",
+  fighting: "#e8b3b0",
+  fire: "#f9d3b9",
+  flying: "#ede9fc",
+  ghost: "#d7d0e2",
+  grass: "#d2edc4",
+  ground: "#f6edd5",
+  ice: "#edf8f8",
+  normal: "#FFFFFF",
+  poison: "#eeddee",
+  psychic: "#fdcedc",
+  rock: "#ebe5c7",
+  steel: "#f0f0f5",
+  water: "#e8edfc",
 };
 
 export default styled.div`
@@ -29,6 +50,7 @@ export default styled.div`
   border: solid 1px ${typeColors["normal"]};
   border-color: ${(props) => typeColors[props.typeColor]};
   color: ${(props) => typeColors[props.typeColor]};
+  background-color: ${(props) => typeBackgroundColors[props.typeColor]};
   text-transform: uppercase;
   font-size: 0.8rem;
 `;
