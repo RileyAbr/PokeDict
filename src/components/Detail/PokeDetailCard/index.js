@@ -1,10 +1,9 @@
 import React from "react";
-import Color from "color-thief-react";
 
 import "./styles.css";
 
 // Styled components
-import Type from "../../../styled-elements/Type";
+import Type from "../../../elements/Type";
 
 class PokeDetailCard extends React.Component {
   constructor(props) {

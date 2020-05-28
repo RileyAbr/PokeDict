@@ -1,23 +1,23 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import "./styles.css";
 
 // Components Import
 import PokeCard from "../PokeCard";
-
-// Styled Components Import
-import ArrowButton from "../../elements/ArrowButton";
-import ArrowIcon from "../../elements/ArrowIcon";
+import Navigation from "../Navigation";
 
 class Home extends React.Component {
-  state = {
-    pokemonList: [],
-    maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
-    searchValue: "",
-    isLoading: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      pokemonList: [],
+      maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
+      isLoading: true,
+    };
+
+    this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
+  }
 
   //   This is the most basic function to fetch Pokemon. It fetches based on simply a page number, no additional complications. It is used everytime the gallery is navigated
   getPokemonList = () => {
@@ -64,9 +64,9 @@ class Home extends React.Component {
   };
 
   //   Detects when the search bar has a value in it and updates the searchValue to match
-  searchBarOnChange = (event) => {
-    this.getSearchedPokemonList(event.target.value);
-  };
+  handleSearchBarChange(searchValue) {
+    this.getSearchedPokemonList(searchValue);
+  }
 
   componentDidMount() {
     this.getIntialPokemonList();
@@ -102,27 +102,15 @@ class Home extends React.Component {
         : this.state.maxPages;
 
     return (
-      <div className="home-wrapper">
+      <React.Fragment>
         {/* Navigation Section */}
-        <nav className="nav-wrapper">
-          <ArrowButton to={"/home/" + backPageValue}></ArrowButton>
-          <form className="nav-search-form">
-            <input
-              className="nav-search-input"
-              type="text"
-              placeholder="Pokédex"
-              // This ensures that the input value is actually passed off to searchBarOnChange()
-              ref={(element) => {
-                this.input = element;
-              }}
-              onChange={this.searchBarOnChange}
-            ></input>
-          </form>
-          <ArrowButton to={"/home/" + forwardPageValue} right></ArrowButton>
-        </nav>
+        <Navigation
+          backPageValue={backPageValue}
+          forwardPageValue={forwardPageValue}
+          onSearchBarChange={this.handleSearchBarChange}
+        />
 
         {/* Pokemon Cards */}
-
         <div className="gallery-wrapper">
           {/* Loads a temporary loading component if no data is available yet */}
           {this.state.isLoading ? (
@@ -138,7 +126,7 @@ class Home extends React.Component {
             ))
           )}
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

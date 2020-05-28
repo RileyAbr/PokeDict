@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 // Styled elements
-import Type from "../../styled-elements/Type";
+import Type from "../../elements/Type";
 
 function PokeCard(props) {
   return (

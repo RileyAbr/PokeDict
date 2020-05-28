@@ -38,7 +38,7 @@ class Detail extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Link
           to={"/home/" + this.state.galleryPreviousPage}
           className="detail-back"
@@ -54,7 +54,7 @@ class Detail extends React.Component {
           image={this.state.pokemon.image}
           types={this.state.pokemon.types}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }
