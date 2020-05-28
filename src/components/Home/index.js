@@ -7,6 +7,10 @@ import "./styles.css";
 // Components Import
 import PokeCard from "../PokeCard";
 
+// Styled Components Import
+import ArrowButton from "../../elements/ArrowButton";
+import ArrowIcon from "../../elements/ArrowIcon";
+
 class Home extends React.Component {
   state = {
     pokemonList: [],
@@ -101,9 +105,7 @@ class Home extends React.Component {
       <div className="home-wrapper">
         {/* Navigation Section */}
         <nav className="nav-wrapper">
-          <Link to={"/home/" + backPageValue} className="nav-arrow">
-            <i className="nav-arrow-icon nav-arrow-left" />
-          </Link>
+          <ArrowButton to={"/home/" + backPageValue}></ArrowButton>
           <form className="nav-search-form">
             <input
               className="nav-search-input"
@@ -116,9 +118,7 @@ class Home extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </form>
-          <Link to={"/home/" + forwardPageValue} className="nav-arrow">
-            <i className="nav-arrow-icon nav-arrow-right" />
-          </Link>
+          <ArrowButton to={"/home/" + forwardPageValue} right></ArrowButton>
         </nav>
 
         {/* Pokemon Cards */}

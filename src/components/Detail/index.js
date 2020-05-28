@@ -7,11 +7,14 @@ import "./styles.css";
 // Components
 import PokeDetailCard from "./PokeDetailCard";
 
+// Styled Components
+import ArrowIcon from "../../elements/ArrowIcon";
+
 class Detail extends React.Component {
   state = {
     name: this.props.match.params.name,
     pokemon: "",
-    galleryPreviousPage: 1, // 1 is the set default, but will be modified depending on getPokemon()
+    galleryPreviousPage: 1, // 1 is the default, but will be modified depending on getPokemon()
   };
 
   getPokemon = () => {
@@ -40,7 +43,7 @@ class Detail extends React.Component {
           to={"/home/" + this.state.galleryPreviousPage}
           className="detail-back"
         >
-          <i className="detail-back-icon"></i>
+          <ArrowIcon />
         </Link>
 
         <h1 className="detail-masthead">{this.state.pokemon.name}</h1>
