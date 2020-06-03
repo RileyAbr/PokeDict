@@ -6,80 +6,49 @@ import "./styles.css";
 import Type from "../../../elements/Type";
 
 class PokeDetailCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { imgSrc: "" };
-    this.imgRef = React.createRef();
-
-    console.log("In constructor");
-    console.log(this.props);
-  }
-
-  componentDidMount() {
-    this.setState({ imgSrc: this.props });
-  }
-
-  renderCnt = 0;
-
   render() {
-    console.log("RENDER " + this.renderCnt++);
-
-    if (this.props.image === undefined) {
-      console.log("undefined");
-    } else {
-      console.log("defined");
-      console.log(this.props);
-    }
-
     return (
       <div className="detail-card">
         <div className="detail-card-header">
           <div>
-            <h2 className="detail-card-name">{this.props.name}</h2>
-            <h3 className="detail-card-id">#{this.props.id}</h3>
+            <h2 className="detail-card-name">{this.props.pokemon.name}</h2>
+            <h3 className="detail-card-id">#{this.props.pokemon.id}</h3>
           </div>
           <div className="detail-card-types">
-            {this.props.types && this.props.types[0] && (
-              <Type typeColor={this.props.types[0]}>{this.props.types[0]}</Type>
+            {this.props.pokemon.types && this.props.pokemon.types[0] && (
+              <Type typeColor={this.props.pokemon.types[0]}>
+                {this.props.pokemon.types[0]}
+              </Type>
             )}
-            {this.props.types && this.props.types[1] && (
-              <Type typeColor={this.props.types[1]}>{this.props.types[1]}</Type>
+            {this.props.pokemon.types && this.props.pokemon.types[1] && (
+              <Type typeColor={this.props.pokemon.types[1]}>
+                {this.props.pokemon.types[1]}
+              </Type>
             )}
           </div>
         </div>
         <div className="detail-card-body">
           <img
-            src={this.props.image}
-            alt={this.props.name}
+            src={this.props.pokemon.image}
+            alt={this.props.pokemon.name}
             className="detail-card-sprite"
           />
-          {/* <Color
-            src={"https://intern-pokedex.myriadapps.com/images/pokemon/6.png"}
-            crossOrigin="Anonymous"
-          >
-            {({ data }) => {
-              return (
-                <div style={{ color: data }}>
-                  Text with predominant color:{data}
-                  <strong>
-                    {data} {this.props.image}
-                  </strong>
+          <div className="detail-card-stats">
+            {this.props.pokemon.stats &&
+              Object.entries(this.props.pokemon.stats).map(([key, value]) => (
+                <div>
+                  {key}: {value}
                 </div>
-              );
-            }}
-          </Color> */}
-          <div className="detail-card-stats">Pokemon.Stats</div>
+              ))}
+          </div>
 
           {/* Bio section */}
           <section className="detail-card-bio">
             <h2 className="detail-card-classification">
-              Pokemon.Classification Pokemon
+              {this.props.pokemon.genus}
             </h2>
             <p className="detail-card-description">
-              Pokemon.description Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Sed et pellentesque arcu, ac pulvinar erat. Morbi
-              ante turpis, dictum a dictum sed, posuere ac ligula. Etiam mi
-              diam, commodo sed felis rhoncus, egestas sodales est.
+              {this.props.pokemon.description}
             </p>
           </section>
 
@@ -90,19 +59,31 @@ class PokeDetailCard extends React.Component {
               <tbody>
                 <tr>
                   <td>Height:</td>
-                  <td>height</td>
+                  <td>{this.props.pokemon.height} m</td>
                 </tr>
                 <tr>
                   <td>Catch Rate:</td>
-                  <td>catchRate</td>
+                  <td>catch_rate</td>
                 </tr>
                 <tr>
                   <td>Egg Groups:</td>
-                  <td>eggGroups</td>
+                  <td>
+                    {this.props.pokemon.egg_groups
+                      ? this.props.pokemon.egg_groups.map((element) => (
+                          <div>{element}</div>
+                        ))
+                      : ""}
+                  </td>
                 </tr>
                 <tr>
                   <td>Abilities</td>
-                  <td>abilities</td>
+                  <td>
+                    {this.props.pokemon.abilities
+                      ? this.props.pokemon.abilities.map((element) => (
+                          <div>{element}</div>
+                        ))
+                      : ""}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -111,15 +92,15 @@ class PokeDetailCard extends React.Component {
               <tbody>
                 <tr>
                   <td>Weight:</td>
-                  <td>weight</td>
+                  <td>{this.props.pokemon.weight} kg</td>
                 </tr>
                 <tr>
                   <td>Gender Ratio:</td>
-                  <td>genderRatio</td>
+                  <td>gender_ratio</td>
                 </tr>
                 <tr>
                   <td>Hatch Steps:</td>
-                  <td>hatchSteps</td>
+                  <td>hatch_steps</td>
                 </tr>
                 <tr>
                   <td>EVs:</td>
