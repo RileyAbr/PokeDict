@@ -22,12 +22,13 @@ class Home extends React.Component {
     this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
   }
 
-  //   This is the most basic function to fetch Pokemon. It fetches based on simply a page number, no additional complications. It is used everytime the gallery is navigated
-  getPokemonList = () => {
+  //  Fetches a page's worth of pokemon entries depending on page and search values
+  getPokemonList = (searchValue = "") => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
         params: {
           page: this.props.match.params.page,
+          name: searchValue,
         },
       })
       .then((response) => {
@@ -37,24 +38,9 @@ class Home extends React.Component {
       });
   };
 
-  //   This function fetches only pokemon that match the search string provided by the input box. It is matching all pokemon names that contain the pattern of letterns provided by the search variable
-  getSearchedPokemonList = (search) => {
-    axios
-      .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
-        params: {
-          name: search,
-        },
-      })
-      .then((response) => {
-        const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-
-        this.setState({ pokemonList, isLoading: false });
-      });
-  };
-
   //   Detects when the search bar has a value in it and updates the searchValue to match
   handleSearchBarChange(searchValue) {
-    this.getSearchedPokemonList(searchValue);
+    this.getPokemonList(searchValue);
   }
 
   componentDidMount() {
