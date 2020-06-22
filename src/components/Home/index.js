@@ -29,20 +29,6 @@ class Home extends React.Component {
       })
       .then((response) => {
         const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        this.setState({ pokemonList, isLoading: false });
-      });
-  };
-
-  //   This function fetches all intial pokemon, but only the first time the component is rendered. The additional data fetched via this function includes the metadata max number of pages from the API, which is used to make sure the navigation buttons are never out of range
-  getIntialPokemonList = () => {
-    axios
-      .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
-        params: {
-          page: this.props.match.params.page,
-        },
-      })
-      .then((response) => {
-        const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
         const maxPages = response.data.meta.last_page;
         this.setState({ pokemonList, maxPages, isLoading: false });
       });
@@ -69,7 +55,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.getIntialPokemonList();
+    this.getPokemonList();
   }
 
   componentDidUpdate(prevProps) {
