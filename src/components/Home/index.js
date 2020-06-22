@@ -23,12 +23,12 @@ class Home extends React.Component {
   }
 
   //  Fetches a page's worth of pokemon entries depending on page and search values
-  getPokemonList = (searchValue = "") => {
+  getPokemonList = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
         params: {
           page: this.props.match.params.page,
-          name: searchValue,
+          name: this.props.match.params.searchValue,
         },
       })
       .then((response) => {
@@ -40,7 +40,12 @@ class Home extends React.Component {
 
   //   Detects when the search bar has a value in it and updates the searchValue to match
   handleSearchBarChange(searchValue) {
+    // this.props.history.push(`/${searchValue}`);
     this.getPokemonList(searchValue);
+  }
+
+  handleSearchBarSubmit(searchValue) {
+    this.props.history.push(`/cha`);
   }
 
   componentDidMount() {
@@ -54,15 +59,21 @@ class Home extends React.Component {
   }
 
   render() {
-    const backPageValue = backPageCalculation(
-      parseInt(this.props.match.params.page),
-      this.state.maxPages
-    );
+    const backPageValue =
+      backPageCalculation(
+        parseInt(this.props.match.params.page),
+        this.state.maxPages
+      ) +
+      "/" +
+      this.props.match.params.searchValue;
 
-    const forwardPageValue = forwardPageCalculation(
-      parseInt(this.props.match.params.page),
-      this.state.maxPages
-    );
+    const forwardPageValue =
+      forwardPageCalculation(
+        parseInt(this.props.match.params.page),
+        this.state.maxPages
+      ) +
+      "/" +
+      this.props.match.params.searchValue;
 
     return (
       <React.Fragment>
@@ -71,6 +82,7 @@ class Home extends React.Component {
           backPageValue={backPageValue}
           forwardPageValue={forwardPageValue}
           onSearchBarChange={this.handleSearchBarChange}
+          onSearchBarSubmit={this.handleSearchBarSubmit}
         />
 
         {/* Pokemon Cards */}

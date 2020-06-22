@@ -12,7 +12,8 @@ function App() {
       <main>
         <Switch>
           <Route path="/pokemon/:name" component={Detail}></Route>
-          <Route path="/home/:page" component={Home}></Route>
+          <Route path="/home/:page" component={Home} exact></Route>
+          <Route path="/home/:page/:searchValue" component={Home}></Route>
           <Route exact path="/">
             <Redirect to="home/1" />
           </Route>
