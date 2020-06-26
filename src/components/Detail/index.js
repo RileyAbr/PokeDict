@@ -62,7 +62,6 @@ class Detail extends React.Component {
         </Link>
 
         <h1 className="detail-masthead">{this.state.name}</h1>
-        {this.state.id}
 
         <PokeDetailCard pokemon={this.state.pokemon} />
       </React.Fragment>

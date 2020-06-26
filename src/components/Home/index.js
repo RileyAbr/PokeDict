@@ -7,9 +7,6 @@ import "./styles.css";
 import PokeCard from "../PokeCard";
 import Navigation from "../Navigation";
 
-// Utilities import
-import { backPageCalculation, forwardPageCalculation } from "../../Utils";
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -18,8 +15,6 @@ class Home extends React.Component {
       maxPages: Number.MAX_SAFE_INTEGER, // Until the actual max count of pages is fetched from the API, we don't put a hard limit in
       isLoading: true,
     };
-
-    this.handleSearchBarChange = this.handleSearchBarChange.bind(this);
   }
 
   //  Fetches a page's worth of pokemon entries depending on page and search values
@@ -38,51 +33,30 @@ class Home extends React.Component {
       });
   };
 
-  //   Detects when the search bar has a value in it and updates the searchValue to match
-  handleSearchBarChange(searchValue) {
-    // this.props.history.push(`/${searchValue}`);
-    this.getPokemonList(searchValue);
-  }
-
-  handleSearchBarSubmit(searchValue) {
-    this.props.history.push(`/cha`);
-  }
-
   componentDidMount() {
     this.getPokemonList();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.page !== prevProps.match.params.page) {
+    console.log("Params");
+    console.log(this.props.match.params);
+    console.log("Prev Params");
+    console.log(prevProps.match.params);
+    if (
+      this.props.match.params.page !== prevProps.match.params.page ||
+      this.props.match.params.searchValue !== prevProps.match.params.searchValue
+    ) {
       this.getPokemonList();
     }
   }
 
   render() {
-    const backPageValue =
-      backPageCalculation(
-        parseInt(this.props.match.params.page),
-        this.state.maxPages
-      ) +
-      "/" +
-      this.props.match.params.searchValue;
-
-    const forwardPageValue =
-      forwardPageCalculation(
-        parseInt(this.props.match.params.page),
-        this.state.maxPages
-      ) +
-      "/" +
-      this.props.match.params.searchValue;
-
     return (
       <React.Fragment>
         {/* Navigation Section */}
         <Navigation
-          backPageValue={backPageValue}
-          forwardPageValue={forwardPageValue}
-          onSearchBarChange={this.handleSearchBarChange}
-          onSearchBarSubmit={this.handleSearchBarSubmit}
+          currentPage={parseInt(this.props.match.params.page)}
+          maxPages={this.state.maxPages}
         />
 
         {/* Pokemon Cards */}

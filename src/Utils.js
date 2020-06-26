@@ -1,5 +1,5 @@
 // Calculates which page should be navigated to in reverse
-export const backPageCalculation = (currentPage, maxPages) => {
+export const backPageCalculation = (currentPage, maxPages, searchValue) => {
   if (currentPage <= 1) {
     return 1;
   } else if (currentPage <= maxPages) {
@@ -10,7 +10,7 @@ export const backPageCalculation = (currentPage, maxPages) => {
 };
 
 // Calculates which page should be navigated to going forward
-export const forwardPageCalculation = (currentPage, maxPages) => {
+export const forwardPageCalculation = (currentPage, maxPages, searchValue) => {
   if (currentPage >= maxPages) {
     return maxPages;
   } else if (currentPage >= 1) {
