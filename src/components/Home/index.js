@@ -38,10 +38,6 @@ class Home extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Params");
-    console.log(this.props.match.params);
-    console.log("Prev Params");
-    console.log(prevProps.match.params);
     if (
       this.props.match.params.page !== prevProps.match.params.page ||
       this.props.match.params.searchValue !== prevProps.match.params.searchValue

@@ -40,7 +40,7 @@ function Navigation(props) {
       <form
         className="nav-search-form"
         onSubmit={handleInputSubmit}
-        autocomplete="off"
+        autoComplete="off"
       >
         <input
           className="nav-search-input"
@@ -49,7 +49,7 @@ function Navigation(props) {
           name="searchValue"
         ></input>
       </form>
-      <Link to={"/home/1"}>CLEAR</Link>
+      <Link to={"/home/" + 1}>CLEAR</Link>
       <ArrowButton to={"/home/" + forwardPageValue} right></ArrowButton>
     </nav>
   );
