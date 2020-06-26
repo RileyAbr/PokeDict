@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
 
 import "./styles.css";
 
@@ -10,63 +10,70 @@ import PokeDetailCard from "./PokeDetailCard";
 // Styled Components
 import ArrowIcon from "../../elements/ArrowIcon";
 
-class Detail extends React.Component {
-  state = {
-    name: this.props.match.params.name,
-    id: 1,
-    pokemon: "",
-    idIsLoaded: false,
-    galleryPreviousPage: 1, // 1 is the default, but will be modified depending on getPokemon()
-  };
+function Detail(props) {
+  const [name] = useState(props.match.params.name);
+  const [id, setID] = useState(1);
+  const [pokemon, setPokemon] = useState("");
+  const [galleryPreviousPage, setGalleryPreviousPage] = useState(1);
+  const [idLoaded, setIDLoaded] = useState(false);
+  const [pokemonLoaded, setPokemonLoaded] = useState(false);
+  const history = useHistory();
 
-  getPokemonID = () => {
+  const getPokemonID = () => {
     axios
       .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
         params: {
-          name: this.state.name,
+          name: name,
         },
       })
       .then((response) => {
         const id = response.data.data[0].id; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
         // The API returns an array of pokemon that all match the name string. When there is only a single match (a perfect name), there will be a single pokemon at index 0
         const galleryPreviousPage = Math.ceil(response.data.data[0].id / 15);
-        this.setState({ id, galleryPreviousPage, idIsLoaded: true });
+        setID(id);
+        setGalleryPreviousPage(galleryPreviousPage);
+        setIDLoaded(true);
       });
   };
 
-  getPokemon = () => {
+  const getPokemon = () => {
     axios
-      .get(
-        `https://intern-pokedex.myriadapps.com/api/v1/pokemon/${this.state.id}`
-      )
+      .get(`https://intern-pokedex.myriadapps.com/api/v1/pokemon/${id}`)
       .then((response) => {
         const pokemon = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        this.setState({ pokemon });
+        setPokemon(pokemon);
+        setPokemonLoaded(true);
       });
   };
 
-  componentDidMount() {
-    this.getPokemonID();
+  useEffect(() => {
+    getPokemonID();
+    if (idLoaded) {
+      getPokemon();
+    }
+  });
 
-    this.getPokemon();
-  }
+  return (
+    <React.Fragment>
+      {!pokemonLoaded ? (
+        <div>Loading...</div>
+      ) : (
+        <React.Fragment>
+          <Link to={"/home/" + galleryPreviousPage} className="detail-back">
+            <ArrowIcon />
+          </Link>
 
-  render() {
-    return (
-      <React.Fragment>
-        <Link
-          to={"/home/" + this.state.galleryPreviousPage}
-          className="detail-back"
-        >
-          <ArrowIcon />
-        </Link>
+          {/* <button onClick={history.goBack()}>
+            <ArrowIcon />
+          </button> */}
 
-        <h1 className="detail-masthead">{this.state.name}</h1>
+          <h1 className="detail-masthead">{name}</h1>
 
-        <PokeDetailCard pokemon={this.state.pokemon} />
-      </React.Fragment>
-    );
-  }
+          <PokeDetailCard pokemon={pokemon} />
+        </React.Fragment>
+      )}
+    </React.Fragment>
+  );
 }
 
-export default Detail;
+export default withRouter(Detail);
