@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
+import styled from "styled-components";
 
 import "./styles.css";
 
@@ -8,6 +9,13 @@ import ArrowButton from "../../styled-components/ArrowButton";
 
 // Utilites import
 import { backPageCalculation, forwardPageCalculation } from "../../Utils";
+
+const NavWrapper = styled.nav`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+`;
 
 function Navigation(props) {
   // This local const is what the search bar uses to push to the url and refresh it with search values
@@ -34,8 +42,13 @@ function Navigation(props) {
     history.push("/home/" + 1 + "/" + searchValue);
   };
 
+  const clearInput = (event) => {
+    //   This isn't the React-iest way to do this, but it works pretty well
+    document.getElementById("search-form").reset();
+  };
+
   return (
-    <nav className="nav-wrapper">
+    <NavWrapper>
       <ArrowButton
         to={"/home/" + backPageValue}
         hideButton={props.currentPage <= 1}
@@ -44,21 +57,26 @@ function Navigation(props) {
         className="nav-search-form"
         onSubmit={handleInputSubmit}
         autoComplete="off"
+        id="search-form"
       >
         <input
-          className="nav-search-input"
           type="text"
+          className="nav-search-input"
           placeholder="Pokédex"
+          aria-label="Search for a specific pokemon"
           name="searchValue"
         ></input>
+
+        <Link to={"/home/" + 1} onClick={clearInput}>
+          Clear
+        </Link>
       </form>
-      <Link to={"/home/" + 1}>CLEAR</Link>
       <ArrowButton
         right
         to={"/home/" + forwardPageValue}
         hideButton={props.currentPage === props.maxPages}
       />
-    </nav>
+    </NavWrapper>
   );
 }
 
