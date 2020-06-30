@@ -38,7 +38,7 @@ function ArrowButton(props) {
       to={props.to}
       hidebutton={props.hideButton.toString()}
     >
-      <ArrowIcon right={props.right}></ArrowIcon>
+      <ArrowIcon borderColor={"borderWhite"} right={props.right}></ArrowIcon>
     </Button>
   );
 }

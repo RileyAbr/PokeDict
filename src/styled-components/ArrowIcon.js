@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { border } from "styled-system";
 
 export default styled.i`
-  border: solid var(--font-white);
+  ${border};
   border-width: 0 5px 5px 0;
+  border-style: solid;
   display: inline-block;
   padding: 5px;
   position: relative;
