@@ -4,7 +4,7 @@ import { Link, useHistory, withRouter } from "react-router-dom";
 import "./styles.css";
 
 // Styled Components
-import ArrowButton from "../../elements/ArrowButton";
+import ArrowButton from "../../styled-components/ArrowButton";
 
 // Utilites import
 import { backPageCalculation, forwardPageCalculation } from "../../Utils";
@@ -36,7 +36,10 @@ function Navigation(props) {
 
   return (
     <nav className="nav-wrapper">
-      <ArrowButton to={"/home/" + backPageValue}></ArrowButton>
+      <ArrowButton
+        to={"/home/" + backPageValue}
+        hideButton={props.currentPage <= 1}
+      />
       <form
         className="nav-search-form"
         onSubmit={handleInputSubmit}
@@ -50,7 +53,11 @@ function Navigation(props) {
         ></input>
       </form>
       <Link to={"/home/" + 1}>CLEAR</Link>
-      <ArrowButton to={"/home/" + forwardPageValue} right></ArrowButton>
+      <ArrowButton
+        right
+        to={"/home/" + forwardPageValue}
+        hideButton={props.currentPage === props.maxPages}
+      />
     </nav>
   );
 }

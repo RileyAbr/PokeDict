@@ -3,7 +3,7 @@ import React from "react";
 import "./styles.css";
 
 // Styled components
-import Types from "../../../elements/Types";
+import Types from "../../../styled-components/Types";
 
 function PokeDetailCard(props) {
   return (

@@ -14,9 +14,20 @@ const Button = styled(Link)`
   text-align: center;
   font-family: var(--font-standard);
   background: var(--button-green);
+  ${(props) => {
+    if (props.hideButton) {
+      return `
+    visibility: hidden;
+  `;
+    } else {
+      return `
+    visibility: visible;
+  `;
+    }
+  }}
   &:active,
-  &:hover,
-  &:focus {
+&:hover,
+&:focus {
     outline: 0;
     -webkit-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
     -moz-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
@@ -26,7 +37,7 @@ const Button = styled(Link)`
 
 function ArrowButton(props) {
   return (
-    <Button to={props.to}>
+    <Button to={props.to} hideButton={props.hideButton}>
       <ArrowIcon right={props.right}></ArrowIcon>
     </Button>
   );
