@@ -8,7 +8,7 @@ import "./styles.css";
 import PokeDetailCard from "./PokeDetailCard";
 
 // Styled Components
-import ArrowIcon from "../../elements/ArrowIcon";
+import ArrowIcon from "../../styled-components/ArrowIcon";
 
 function Detail(props) {
   const [name] = useState(props.match.params.name);
