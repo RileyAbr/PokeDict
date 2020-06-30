@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Type from "./Type";
 
-const TypesContainer = styled.div`
+const TypesBox = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
@@ -11,14 +11,10 @@ const TypesContainer = styled.div`
 
 function Types(props) {
   return (
-    <TypesContainer>
-      {props.firstType && (
-        <Type typeColor={props.firstType}>{props.firstType}</Type>
-      )}
-      {props.secondType && (
-        <Type typeColor={props.secondType}>{props.secondType}</Type>
-      )}
-    </TypesContainer>
+    <TypesBox>
+      {props.firstType && <Type type={props.firstType} />}
+      {props.secondType && <Type type={props.secondType} />}
+    </TypesBox>
   );
 }
 
