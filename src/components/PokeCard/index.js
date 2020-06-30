@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 // Styled elements
-import Type from "../../elements/Type";
+import Types from "../../elements/Types";
 
 function PokeCard(props) {
   return (
@@ -17,14 +17,7 @@ function PokeCard(props) {
         <img className="card-sprite" src={props.image} alt={props.name} />
 
         {/* Pokemon Types */}
-        <div className="card-types">
-          {props.types && props.types[0] && (
-            <Type typeColor={props.types[0]}>{props.types[0]}</Type>
-          )}
-          {props.types && props.types[1] && (
-            <Type typeColor={props.types[1]}>{props.types[1]}</Type>
-          )}
-        </div>
+        <Types firstType={props.types[0]} secondType={props.types[1]} />
       </article>
     </Link>
   );

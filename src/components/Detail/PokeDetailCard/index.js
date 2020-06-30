@@ -3,7 +3,7 @@ import React from "react";
 import "./styles.css";
 
 // Styled components
-import Type from "../../../elements/Type";
+import Types from "../../../elements/Types";
 
 function PokeDetailCard(props) {
   return (
@@ -13,18 +13,10 @@ function PokeDetailCard(props) {
           <h2 className="detail-card-name">{props.pokemon.name}</h2>
           <h3 className="detail-card-id">#{props.pokemon.id}</h3>
         </div>
-        <div className="detail-card-types">
-          {props.pokemon.types && props.pokemon.types[0] && (
-            <Type typeColor={props.pokemon.types[0]}>
-              {props.pokemon.types[0]}
-            </Type>
-          )}
-          {props.pokemon.types && props.pokemon.types[1] && (
-            <Type typeColor={props.pokemon.types[1]}>
-              {props.pokemon.types[1]}
-            </Type>
-          )}
-        </div>
+        <Types
+          firstType={props.pokemon.types[0]}
+          secondType={props.pokemon.types[1]}
+        />
       </div>
       <div className="detail-card-body">
         <img
