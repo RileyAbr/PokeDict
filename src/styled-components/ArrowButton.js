@@ -17,13 +17,7 @@ const Button = styled(Link)`
   ${typography};
   ${(props) => {
     if (props.hidebutton === "true") {
-      return `
-    visibility: hidden;
-  `;
-    } else {
-      return `
-    visibility: visible;
-  `;
+      return `visibility: hidden;`;
     }
   }}
   &:active,
