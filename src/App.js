@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
+import { color, typography } from "styled-system";
 import theme from "./theme";
 
 // Components
@@ -10,8 +11,8 @@ import Detail from "./components/Detail";
 // The background box that contains the entire SPA
 const Main = styled.main`
   min-height: 100vh;
-  background-color: var(--bg-home-green);
-  font-family: var(--font-standard);
+  ${color}
+  ${typography}
   padding: 5px;
 `;
 
@@ -19,7 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Main>
+        <Main bg={"bgHomeGreen"} fontFamily={"fontStandard"}>
           <Switch>
             <Route path="/pokemon/:name" component={Detail}></Route>
             <Route path="/home/:page" component={Home} exact></Route>
