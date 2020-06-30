@@ -21,8 +21,8 @@ const Button = styled(Link)`
     }
   }}
   &:active,
-&:hover,
-&:focus {
+    &:hover,
+    &:focus {
     outline: 0;
     -webkit-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
     -moz-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);

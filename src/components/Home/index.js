@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import "./styles.css";
+import styled from "styled-components";
 
 // Components Import
 import PokeCard from "../PokeCard";
 import Navigation from "../Navigation";
+
+const GalleryWrapper = styled.div`
+  margin: 0 4%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+`;
 
 function Home(props) {
   const [pokemonList, setPokemonList] = useState([]);
@@ -40,7 +47,7 @@ function Home(props) {
       />
 
       {/* Pokemon Cards */}
-      <div className="gallery-wrapper">
+      <GalleryWrapper>
         {/* Loads a temporary loading component if no data is available yet */}
         {!pokemonListLoaded ? (
           <div>Loading...</div>
@@ -54,7 +61,7 @@ function Home(props) {
             />
           ))
         )}
-      </div>
+      </GalleryWrapper>
     </React.Fragment>
   );
 }
