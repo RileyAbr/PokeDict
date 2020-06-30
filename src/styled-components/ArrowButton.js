@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { color, typography } from "styled-system";
 
 import ArrowIcon from "./ArrowIcon";
 
@@ -12,10 +13,10 @@ const Button = styled(Link)`
   border-radius: 50px;
   border: none;
   text-align: center;
-  font-family: var(--font-standard);
-  background: var(--button-green);
+  ${color};
+  ${typography};
   ${(props) => {
-    if (props.hideButton) {
+    if (props.hidebutton === "true") {
       return `
     visibility: hidden;
   `;
@@ -37,7 +38,12 @@ const Button = styled(Link)`
 
 function ArrowButton(props) {
   return (
-    <Button to={props.to} hideButton={props.hideButton}>
+    <Button
+      bg="buttonGreen"
+      fontFamily="fontStandard"
+      to={props.to}
+      hidebutton={props.hideButton.toString()}
+    >
       <ArrowIcon right={props.right}></ArrowIcon>
     </Button>
   );
