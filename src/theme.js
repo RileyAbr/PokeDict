@@ -1,20 +1,29 @@
 export default {
   colors: {
     // Background
-    bgHomeGreen: "#55a69c",
-    bgCardWhite: "#ffffff",
+    bg: {
+      homeGreen: "#55a69c",
+      cardWhite: "#ffffff",
+    },
 
     /* Borders */
-    borderWhite: "#ffffff",
-    borderGrey: "#e9e9e9",
+    border: {
+      white: "#ffffff",
+      grey: "#e9e9e9",
+    },
 
-    /* Inputs */
-    buttonGreen: "#4e988f",
-    searchGreen: "#509f95",
+    // Font colors
+    font: {
+      white: "#ffffff",
+      grey: "#cdcdcd",
+      darkGreen: "#458a80",
+    },
 
-    fontWhite: "#ffffff",
-    fontGrey: "#cdcdcd",
-    fontDarkGreen: "#458a80",
+    // Input Colors
+    input: {
+      buttonGreen: "#4e988f",
+      searchGreen: "#509f95",
+    },
 
     // Type Colors
     typeColors: {
