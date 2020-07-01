@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { color, typography } from "styled-system";
-
-import "./styles.css";
+import { color } from "styled-system";
 
 // Components
 import PokeDetailCard from "./PokeDetailCard";
