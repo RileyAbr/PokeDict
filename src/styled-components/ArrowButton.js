@@ -39,7 +39,7 @@ function ArrowButton(props) {
       //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
       hidebutton={props.hideButton.toString()}
     >
-      <ArrowIcon borderColor={"border.white"} right={props.right}></ArrowIcon>
+      <ArrowIcon borderColor={"border.white"} right={props.right} />
     </Button>
   );
 }

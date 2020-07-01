@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, withRouter, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { color, typography } from "styled-system";
 
 import "./styles.css";
 
@@ -10,6 +12,32 @@ import PokeDetailCard from "./PokeDetailCard";
 // Styled Components
 import ArrowIcon from "../../styled-components/ArrowIcon";
 
+const BackArrow = styled(Link)`
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+  ${color};
+  cursor: pointer;
+  position: absolute;
+  &:active,
+  &:hover,
+  &:focus {
+    outline: 0;
+    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
+  }
+`;
+
+const Masthead = styled.h1`
+  text-align: center;
+  font-size: 5rem;
+  margin: 0.5rem 0 1rem;
+  width: 100%;
+  ${color}
+`;
+
+// Main Component
 function Detail(props) {
   const [name] = useState(props.match.params.name);
   const [id, setID] = useState(1);
@@ -59,15 +87,18 @@ function Detail(props) {
         <div>Loading...</div>
       ) : (
         <React.Fragment>
-          <Link to={"/home/" + galleryPreviousPage} className="detail-back">
-            <ArrowIcon />
-          </Link>
+          <BackArrow
+            to={"/home/" + galleryPreviousPage}
+            bg={"input.buttonGreen"}
+          >
+            <ArrowIcon borderColor={"border.white"} />
+          </BackArrow>
 
           {/* <button onClick={history.goBack()}>
             <ArrowIcon />
           </button> */}
 
-          <h1 className="detail-masthead">{name}</h1>
+          <Masthead color={"font.white"}>{name}</Masthead>
 
           <PokeDetailCard pokemon={pokemon} />
         </React.Fragment>
