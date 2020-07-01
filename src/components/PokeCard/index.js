@@ -14,7 +14,7 @@ const Card = styled.article`
   border-radius: 3px;
 `;
 
-const CardName = styled.h2`
+const CardName = styled.h1`
   font-size: 1.1rem;
   padding: 1.3rem 2rem;
   font-weight: bold;
