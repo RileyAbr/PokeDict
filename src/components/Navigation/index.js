@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { color } from "styled-system";
 
 import "./styles.css";
 
@@ -10,11 +11,16 @@ import ArrowButton from "../../styled-components/ArrowButton";
 // Utilites import
 import { backPageCalculation, forwardPageCalculation } from "../../Utils";
 
+// Styled Components
 const NavWrapper = styled.nav`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+const ClearButton = styled(Link)`
+  ${color}
 `;
 
 function Navigation(props) {
@@ -67,9 +73,13 @@ function Navigation(props) {
           name="searchValue"
         ></input>
 
-        <Link to={"/home/" + 1} onClick={clearInput}>
-          Clear
-        </Link>
+        <ClearButton
+          to={"/home/" + 1}
+          color={"font.white"}
+          onClick={clearInput}
+        >
+          X
+        </ClearButton>
       </form>
       <ArrowButton
         right

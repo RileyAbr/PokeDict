@@ -20,7 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Main bg={"bgHomeGreen"} fontFamily={"fontStandard"}>
+        <Main bg={"bg.homeGreen"} fontFamily={"fontStandard"}>
           <Switch>
             <Route path="/pokemon/:name" component={Detail}></Route>
             <Route path="/home/:page" component={Home} exact></Route>

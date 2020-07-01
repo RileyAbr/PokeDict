@@ -33,12 +33,13 @@ const Button = styled(Link)`
 function ArrowButton(props) {
   return (
     <Button
-      bg="buttonGreen"
-      fontFamily="fontStandard"
+      bg={"bg.homeGreen"}
+      fontFamily={"fontStandard"}
       to={props.to}
+      //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
       hidebutton={props.hideButton.toString()}
     >
-      <ArrowIcon borderColor={"borderWhite"} right={props.right}></ArrowIcon>
+      <ArrowIcon borderColor={"border.white"} right={props.right}></ArrowIcon>
     </Button>
   );
 }
