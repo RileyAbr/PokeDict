@@ -1,9 +1,7 @@
 import React from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { color } from "styled-system";
-
-import "./styles.css";
+import { color, typography } from "styled-system";
 
 // Styled Components
 import ArrowButton from "../../styled-components/ArrowButton";
@@ -19,10 +17,35 @@ const NavWrapper = styled.nav`
   align-items: center;
 `;
 
-const ClearButton = styled(Link)`
-  ${color}
+const SearchForm = styled.form`
+  min-width: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  ${color};
+  &:focus-within {
+    outline: 0;
+    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
+  }
 `;
 
+const SearchInput = styled.input`
+  width: 100%;
+  ${color};
+  ${typography};
+  border: none;
+  border-radius: 4px;
+  padding: 10px 5px;
+  &::placeholder {
+    ${color}
+  }
+`;
+
+const ClearButton = styled(Link)`
+  ${color};
+`;
+
+// Main Component
 function Navigation(props) {
   // This local const is what the search bar uses to push to the url and refresh it with search values
   const history = useHistory();
@@ -59,28 +82,31 @@ function Navigation(props) {
         to={"/home/" + backPageValue}
         hideButton={props.currentPage <= 1}
       />
-      <form
+      <SearchForm
         className="nav-search-form"
         onSubmit={handleInputSubmit}
         autoComplete="off"
         id="search-form"
+        bg={"input.searchGreen"}
       >
-        <input
+        <SearchInput
           type="text"
           className="nav-search-input"
           placeholder="Pokédex"
           aria-label="Search for a specific pokemon"
           name="searchValue"
-        ></input>
-
+          color={"font.white"}
+          bg={"input.searchGreen"}
+          fontSize={["3rem", "5rem"]}
+        ></SearchInput>
         <ClearButton
           to={"/home/" + 1}
-          color={"font.white"}
           onClick={clearInput}
+          color={"font.white"}
         >
           X
         </ClearButton>
-      </form>
+      </SearchForm>
       <ArrowButton
         right
         to={"/home/" + forwardPageValue}
