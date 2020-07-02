@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { border } from "styled-system";
+import { border, space, position, layout } from "styled-system";
 
 export default styled.i`
-  ${border};
-  border-width: 0 5px 5px 0;
+  ${space};
+  ${position}
+  /* border-width: 0 5px 5px 0; */
   border-style: solid;
+  ${border};
   display: inline-block;
-  padding: 5px;
+  /* padding: 5px; */
   position: relative;
-  top: 26px;
 
   /* Change arrow direction left/right */
   /* Left is default */

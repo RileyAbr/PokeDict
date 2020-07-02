@@ -37,11 +37,7 @@ function PokeCard(props) {
         <CardName borderColor={"border.grey"}>{props.name}</CardName>
 
         {/* Pokemon Sprite */}
-        <CardSprite
-          className="card-sprite"
-          src={props.image}
-          alt={props.name}
-        />
+        <CardSprite src={props.image} alt={props.name} />
 
         {/* Pokemon Types */}
         <Types firstType={props.types[0]} secondType={props.types[1]} />

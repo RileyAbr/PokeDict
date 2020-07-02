@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { color, typography } from "styled-system";
+import { color, typography, layout } from "styled-system";
 
 import ArrowIcon from "./ArrowIcon";
 
 const Button = styled(Link)`
   flex: 0 0 auto;
-  width: 70px;
-  height: 70px;
+  ${layout};
   margin: 10px;
   border-radius: 50px;
   border: none;
@@ -36,10 +35,19 @@ function ArrowButton(props) {
       bg={"input.buttonGreen"}
       fontFamily={"fontStandard"}
       to={props.to}
+      width={["35px", "70px"]}
+      height={["35px", "70px"]}
       //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
       hidebutton={props.hideButton.toString()}
     >
-      <ArrowIcon borderColor={"border.white"} right={props.right} />
+      <ArrowIcon
+        right={props.right}
+        padding={["4px", "5px"]}
+        borderColor={"border.white"}
+        borderBottomWidth={[4, 5]}
+        borderRightWidth={[4, 5]}
+        top={[10, 26]}
+      />
     </Button>
   );
 }

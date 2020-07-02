@@ -43,6 +43,10 @@ const SearchInput = styled.input`
 
 const ClearButton = styled(Link)`
   ${color};
+  ${typography};
+  font-size: 2.5rem;
+  padding: 10px 15px;
+  margin: 10px 10px;
 `;
 
 // Main Component
@@ -83,7 +87,6 @@ function Navigation(props) {
         hideButton={props.currentPage <= 1}
       />
       <SearchForm
-        className="nav-search-form"
         onSubmit={handleInputSubmit}
         autoComplete="off"
         id="search-form"
@@ -91,7 +94,6 @@ function Navigation(props) {
       >
         <SearchInput
           type="text"
-          className="nav-search-input"
           placeholder="Pokédex"
           aria-label="Search for a specific pokemon"
           name="searchValue"
@@ -103,6 +105,7 @@ function Navigation(props) {
           to={"/home/" + 1}
           onClick={clearInput}
           color={"font.white"}
+          fontSize={["1rem", "2.5rem"]}
         >
           X
         </ClearButton>
