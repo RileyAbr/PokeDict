@@ -5,6 +5,9 @@ import { color, border } from "styled-system";
 // Styled components
 import Types from "../../../styled-components/Types";
 
+// Utility Functions
+import { capitalizeString } from "../../../Utils";
+
 const DetailCard = styled.article`
   ${color};
   max-width: 700px;
@@ -143,9 +146,7 @@ function PokeDetailCard(props) {
                 <CardTableItem>
                   {props.pokemon.egg_groups
                     ? props.pokemon.egg_groups.map((element) => (
-                        <div key={element}>
-                          {element.charAt(0).toUpperCase() + element.slice(1)}
-                        </div>
+                        <div key={element}>{capitalizeString(element)}</div>
                       ))
                     : ""}
                 </CardTableItem>
@@ -155,9 +156,7 @@ function PokeDetailCard(props) {
                 <CardTableItem>
                   {props.pokemon.abilities
                     ? props.pokemon.abilities.map((element) => (
-                        <div key={element}>
-                          {element.charAt(0).toUpperCase() + element.slice(1)}
-                        </div>
+                        <div key={element}>{capitalizeString(element)}</div>
                       ))
                     : ""}
                 </CardTableItem>

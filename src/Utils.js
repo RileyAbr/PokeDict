@@ -19,3 +19,7 @@ export const forwardPageCalculation = (currentPage, maxPages, searchValue) => {
     return 1;
   }
 };
+
+export const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
