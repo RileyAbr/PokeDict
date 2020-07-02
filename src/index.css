@@ -1,24 +1,5 @@
 @import "./reset.css";
 
-:root {
-  /* Background */
-  --bg-home-green: #55a69c;
-  --bg-card-white: #ffffff;
-
-  /* Borders */
-  --border-grey: #e9e9e9;
-
-  /* Inputs */
-  --button-green: #4e988f;
-  --search-green: #509f95;
-
-  /* Fonts */
-  --font-standard: Verdana, Geneva, sans-serif;
-  --font-white: #ffffff;
-  --font-grey: #cdcdcd;
-  --font-dark-green: #458a80;
-}
-
 * {
   box-sizing: border-box;
 }
