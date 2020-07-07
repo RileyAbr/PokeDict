@@ -17,7 +17,7 @@ const Button = styled(Link)`
   ${color};
   ${typography};
   ${(props) => {
-    if (props.hidebutton === "true") {
+    if (props.hidebutton) {
       return `visibility: hidden;`;
     }
   }}
@@ -33,7 +33,7 @@ function ArrowButton(props) {
       height={["35px", "70px"]}
       theme={theme}
       //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
-      hidebutton={props.hideButton ? props.hideButton.toString() : false}
+      hidebutton={props.hideButton ? 1 : 0}
     >
       <ArrowIcon
         right={props.right}
