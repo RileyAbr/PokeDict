@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { color, typography } from "styled-system";
@@ -48,6 +48,12 @@ const ClearButton = styled(Link)`
   font-size: 2.5rem;
   padding: 10px 15px;
   margin: 10px 10px;
+  visibility: hidden;
+  ${(props) => {
+    if (props.isvisible) {
+      return `visibility: visible;`;
+    }
+  }}
 `;
 
 // Main Component
@@ -55,8 +61,10 @@ function Navigation(props) {
   // This local const is what the search bar uses to push to the url and refresh it with search values
   const history = useHistory();
 
-  const backPageNumber = backPageCalculation(props.currentPage, props.maxPages);
+  const [searchValue, setSearchValue] = useState("");
+  const [showClearButton, setShowClearButton] = useState(false);
 
+  const backPageNumber = backPageCalculation(props.currentPage, props.maxPages);
   const forwardPageNumber = forwardPageCalculation(
     props.currentPage,
     props.maxPages
@@ -70,14 +78,27 @@ function Navigation(props) {
     props.match.params.searchValue || ""
   }`;
 
+  useEffect(() => {
+    console.log(searchValue);
+    if (searchValue !== "") {
+      setShowClearButton(true);
+    } else {
+      setShowClearButton(false);
+    }
+  }, [searchValue]);
+
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
   const handleInputSubmit = (event) => {
     event.preventDefault();
-    const searchValue = new FormData(event.target).get("searchValue");
     history.push("/home/" + 1 + "/" + searchValue);
   };
 
   const clearInput = (event) => {
     //   This isn't the React-iest way to do this, but it works pretty well
+    setSearchValue("");
     document.getElementById("search-form").reset();
   };
 
@@ -85,7 +106,7 @@ function Navigation(props) {
     <NavWrapper>
       <ArrowButton
         to={"/home/" + backPageValue}
-        hideButton={props.currentPage <= 1}
+        hideButton={props.currentPage <= 1 ? 1 : 0}
       />
       <SearchForm
         onSubmit={handleInputSubmit}
@@ -101,12 +122,14 @@ function Navigation(props) {
           color={"font.white"}
           bg={"input.buttonGreen"}
           fontSize={["3rem", "5rem"]}
+          onChange={handleInputChange}
         ></SearchInput>
         <ClearButton
           to={"/home/" + 1}
           onClick={clearInput}
           color={"font.white"}
           fontSize={["1rem", "2.5rem"]}
+          isvisible={showClearButton ? 1 : 0}
         >
           X
         </ClearButton>
@@ -114,7 +137,7 @@ function Navigation(props) {
       <ArrowButton
         right
         to={"/home/" + forwardPageValue}
-        hideButton={props.currentPage === props.maxPages}
+        hideButton={props.currentPage === props.maxPages ? 1 : 0}
       />
     </NavWrapper>
   );
