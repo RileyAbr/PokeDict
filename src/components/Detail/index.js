@@ -8,24 +8,7 @@ import { color } from "styled-system";
 import PokeDetailCard from "./PokeDetailCard";
 
 // Styled Components
-import ArrowIcon from "../../styled-components/ArrowIcon";
-
-const BackArrow = styled(Link)`
-  width: 70px;
-  height: 70px;
-  border-radius: 50px;
-  border: none;
-  text-align: center;
-  ${color};
-  cursor: pointer;
-  position: absolute;
-  &:active,
-  &:hover,
-  &:focus {
-    outline: 0;
-    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
-  }
-`;
+import BackButton from "../../styled-components/BackButton";
 
 const Masthead = styled.h1`
   text-align: center;
@@ -85,12 +68,11 @@ function Detail(props) {
         <div>Loading...</div>
       ) : (
         <React.Fragment>
-          <BackArrow
+          <BackButton
             to={"/home/" + galleryPreviousPage}
             bg={"input.buttonGreen"}
-          >
-            <ArrowIcon borderColor={"border.white"} />
-          </BackArrow>
+            hideButton={false}
+          ></BackButton>
 
           {/* <button onClick={history.goBack()}>
             <ArrowIcon />
