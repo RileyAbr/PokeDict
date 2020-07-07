@@ -12,6 +12,10 @@ const FooterBox = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 2.5rem;
 `;
 
 const FooterInternalLink = styled(Link)`
@@ -49,8 +53,12 @@ function Footer(props) {
       <FooterInternalLink color={"font.grey"} to={"/"}>
         Home{" "}
       </FooterInternalLink>{" "}
+      <FooterDivider />
       Created By&nbsp;
-      <FooterExternalLink href="https://www.rileyabrahamson.com">
+      <FooterExternalLink
+        color={"font.grey"}
+        href="https://www.rileyabrahamson.com"
+      >
         Riley Abrahamson
       </FooterExternalLink>
     </FooterBox>

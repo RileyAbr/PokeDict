@@ -9,6 +9,8 @@ const Button = styled(Link)`
   width: 70px;
   height: 70px;
   border-radius: 50px;
+  top: 10px;
+  left: 10px;
   border: none;
   text-align: center;
   ${color};

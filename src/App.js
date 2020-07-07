@@ -7,12 +7,14 @@ import theme from "./theme";
 // Components
 import Home from "./components/Home";
 import Detail from "./components/Detail";
+import Footer from "./styled-components/Footer";
 
 // The background box that contains the entire SPA
 const Main = styled.main`
   min-height: 100vh;
   ${color}
   ${typography}
+  padding-bottom: 2.5rem;
 `;
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
               <Redirect to="/home/1"></Redirect>
             </Route>
           </Switch>
+
+          <Footer />
         </Main>
       </BrowserRouter>
     </ThemeProvider>

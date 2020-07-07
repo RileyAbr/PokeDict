@@ -64,7 +64,7 @@ function Home(props) {
         )}
       </GalleryWrapper>
 
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 }

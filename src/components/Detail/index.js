@@ -13,7 +13,7 @@ import BackButton from "../../styled-components/BackButton";
 const Masthead = styled.h1`
   text-align: center;
   font-size: 5rem;
-  margin: 0.5rem 0 1rem;
+  padding: 0.5rem 0 1rem;
   width: 100%;
   ${color}
 `;
