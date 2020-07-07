@@ -5,7 +5,6 @@ import styled from "styled-components";
 // Components Import
 import PokeCard from "../PokeCard";
 import Navigation from "../Navigation";
-import Footer from "../../styled-components/Footer";
 
 const GalleryWrapper = styled.div`
   margin: 0 4%;
