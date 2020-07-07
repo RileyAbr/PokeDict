@@ -5,6 +5,8 @@ import { color, typography, layout } from "styled-system";
 
 import ArrowIcon from "./ArrowIcon";
 
+import theme from "../theme";
+
 const Button = styled(Link)`
   flex: 0 0 auto;
   ${layout};
@@ -19,14 +21,6 @@ const Button = styled(Link)`
       return `visibility: hidden;`;
     }
   }}
-  &:active,
-    &:hover,
-    &:focus {
-    outline: 0;
-    -webkit-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
-    -moz-box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
-    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.66);
-  }
 `;
 
 function ArrowButton(props) {
@@ -37,8 +31,9 @@ function ArrowButton(props) {
       to={props.to}
       width={["35px", "70px"]}
       height={["35px", "70px"]}
+      theme={theme}
       //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
-      hidebutton={props.hideButton.toString()}
+      hidebutton={props.hideButton ? props.hideButton.toString() : false}
     >
       <ArrowIcon
         right={props.right}

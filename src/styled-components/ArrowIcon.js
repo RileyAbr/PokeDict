@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border, space, position, layout } from "styled-system";
+import { border, space, position } from "styled-system";
 
 export default styled.i`
   ${space};

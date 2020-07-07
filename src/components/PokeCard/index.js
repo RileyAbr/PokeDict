@@ -11,7 +11,7 @@ const Card = styled.article`
   ${typography};
   width: 275px;
   margin: 15px 10px;
-  border-radius: 3px;
+  /* border-radius: 3px; */
 `;
 
 const CardName = styled.h1`
@@ -31,7 +31,7 @@ const CardSprite = styled.img`
 // Main Component
 function PokeCard(props) {
   return (
-    <Link to={`/pokemon/${props.name}`}>
+    <Link bg={"bg.homeGreen"} to={`/pokemon/${props.name}`}>
       <Card bg={"bg.cardWhite"} fontFamily={"fontStandard"}>
         {/* Pokemon name */}
         <CardName borderColor={"border.grey"}>{props.name}</CardName>

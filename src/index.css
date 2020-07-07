@@ -1,11 +1,11 @@
 @import "./reset.css";
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* Removes all link styling, might be too drastic and need changes later */
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }

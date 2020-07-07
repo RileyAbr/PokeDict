@@ -11,6 +11,7 @@ import { backPageCalculation, forwardPageCalculation } from "../../Utils";
 
 // Styled Components
 const NavWrapper = styled.nav`
+  padding: 10px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
@@ -90,7 +91,7 @@ function Navigation(props) {
         onSubmit={handleInputSubmit}
         autoComplete="off"
         id="search-form"
-        bg={"input.searchGreen"}
+        bg={"input.buttonGreen"}
       >
         <SearchInput
           type="text"
@@ -98,7 +99,7 @@ function Navigation(props) {
           aria-label="Search for a specific pokemon"
           name="searchValue"
           color={"font.white"}
-          bg={"input.searchGreen"}
+          bg={"input.buttonGreen"}
           fontSize={["3rem", "5rem"]}
         ></SearchInput>
         <ClearButton

@@ -22,7 +22,6 @@ export default {
     // Input Colors
     input: {
       buttonGreen: "#4e988f",
-      searchGreen: "#509f95",
     },
 
     // Type Colors

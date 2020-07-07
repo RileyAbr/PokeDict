@@ -13,7 +13,6 @@ const Main = styled.main`
   min-height: 100vh;
   ${color}
   ${typography}
-  padding: 5px;
 `;
 
 function App() {
