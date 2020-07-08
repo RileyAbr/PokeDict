@@ -5,6 +5,7 @@ import { color, typography } from "styled-system";
 
 // Styled Components
 import ArrowButton from "../../styled-components/ArrowButton";
+import DoubleArrowButton from "../../styled-components/DoubleArrowButton";
 
 // Utilites import
 import { backPageCalculation, forwardPageCalculation } from "../../Utils";
@@ -13,9 +14,12 @@ import { backPageCalculation, forwardPageCalculation } from "../../Utils";
 const NavWrapper = styled.nav`
   padding: 10px;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
+  @media screen and (min-width: 40em) {
+    flex-wrap: nowrap;
+  }
 `;
 
 const SearchForm = styled.form`
@@ -24,6 +28,7 @@ const SearchForm = styled.form`
   flex-flow: row nowrap;
   align-items: center;
   ${color};
+  position: relative;
   &:focus-within {
     outline: 0;
     box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
@@ -31,29 +36,31 @@ const SearchForm = styled.form`
 `;
 
 const SearchInput = styled.input`
-  width: 100%;
   ${color};
   ${typography};
+  width: 100%;
   border: none;
-  border-radius: 4px;
   padding: 10px 5px;
   &::placeholder {
     ${color}
   }
+  order: 1;
 `;
 
 const ClearButton = styled(Link)`
   ${color};
   ${typography};
-  font-size: 2.5rem;
+  font-size: 2rem;
   padding: 10px 15px;
-  margin: 10px 10px;
+  /* margin: 10px 10px; */
   visibility: hidden;
   ${(props) => {
     if (props.isvisible) {
       return `visibility: visible;`;
     }
   }}
+  position: absolute;
+  right: 0;
 `;
 
 // Main Component
@@ -97,13 +104,16 @@ function Navigation(props) {
   };
 
   const clearInput = (event) => {
-    //   This isn't the React-iest way to do this, but it works pretty well
     setSearchValue("");
     document.getElementById("search-form").reset();
   };
 
   return (
     <NavWrapper>
+      <DoubleArrowButton
+        to={"/home/"}
+        hideButton={props.currentPage <= 1 ? 1 : 0}
+      />
       <ArrowButton
         to={"/home/" + backPageValue}
         hideButton={props.currentPage <= 1 ? 1 : 0}
@@ -118,7 +128,7 @@ function Navigation(props) {
           type="text"
           placeholder="Pokédex"
           aria-label="Search for a specific pokemon"
-          name="searchValue"
+          //   size="15"
           color={"font.white"}
           bg={"input.buttonGreen"}
           fontSize={["3rem", "5rem"]}
@@ -137,6 +147,11 @@ function Navigation(props) {
       <ArrowButton
         right
         to={"/home/" + forwardPageValue}
+        hideButton={props.currentPage === props.maxPages ? 1 : 0}
+      />
+      <DoubleArrowButton
+        right
+        to={"/home/" + props.maxPages}
         hideButton={props.currentPage === props.maxPages ? 1 : 0}
       />
     </NavWrapper>
