@@ -11,7 +11,11 @@ const Card = styled.article`
   ${typography};
   width: 275px;
   margin: 15px 10px;
-  /* border-radius: 3px; */
+  &:hover,
+  &:active,
+  &:focus {
+    transform: scale(1.1);
+  }
 `;
 
 const CardName = styled.h1`
