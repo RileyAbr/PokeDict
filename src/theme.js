@@ -4,6 +4,7 @@ export default {
     bg: {
       homeGreen: "#55a69c",
       cardWhite: "#ffffff",
+      grey: "#cdcdcd",
     },
 
     /* Borders */

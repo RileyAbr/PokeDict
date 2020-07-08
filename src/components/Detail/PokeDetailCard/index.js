@@ -4,6 +4,7 @@ import { color, border } from "styled-system";
 
 // Styled components
 import Types from "../../../styled-components/Types";
+import PokeStats from "../../../styled-components/PokeStats";
 
 // Utility Functions
 import { capitalizeString } from "../../../Utils";
@@ -47,14 +48,11 @@ const CardBody = styled.div`
 const CardSprite = styled.img`
   width: 200px;
   height: auto;
-`;
-
-const CardStats = styled.div`
-  /* Testing values */
-  border: 2px solid black;
-  ${border};
-  border-radius: 3px;
-  width: 200px;
+  &:hover,
+  &:active,
+  &:focus {
+    transform: scale(1.1);
+  }
 `;
 
 const CardBio = styled.section`
@@ -111,14 +109,7 @@ function PokeDetailCard(props) {
       {/* Body */}
       <CardBody>
         <CardSprite src={props.pokemon.image} alt={props.pokemon.name} />
-        <CardStats borderColor={"border.grey"}>
-          {props.pokemon.stats &&
-            Object.entries(props.pokemon.stats).map(([key, value]) => (
-              <div key={key}>
-                {key}: {value}
-              </div>
-            ))}
-        </CardStats>
+        <PokeStats stats={props.pokemon.stats} borderColor={"border.grey"} />
 
         {/* Bio section */}
         <CardBio>
