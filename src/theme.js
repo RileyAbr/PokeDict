@@ -22,6 +22,7 @@ export default {
     // Input Colors
     input: {
       buttonGreen: "#4e988f",
+      buttonShadow: "#3f7972",
     },
 
     // Type Colors

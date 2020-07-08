@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { color, typography, layout } from "styled-system";
+import { color, typography, layout, shadow } from "styled-system";
 
 import theme from "../theme";
 
@@ -14,12 +14,28 @@ const Button = styled(Link)`
   text-align: center;
   ${color};
   ${typography};
+  order: 2;
+
   ${(props) => {
     if (props.hidebutton) {
       return `visibility: hidden;`;
     }
   }}
-  order: 2;
+
+  box-shadow: 0 5px
+    ${(props) => {
+      return props.theme.colors.input.buttonShadow;
+    }};
+&:hover,
+&:focus {
+    box-shadow: 0 3px ${(props) => {
+      return props.theme.colors.input.buttonShadow;
+    }};
+}
+&:active {
+    box-shadow: none;
+}
+
   @media screen and (min-width: 40em) {
     order: 0;
   }

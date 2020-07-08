@@ -17,7 +17,17 @@ const Main = styled.main`
   padding-bottom: 2.5rem;
 `;
 
+// options for different color modes
+const modes = [
+  "light",
+  "dark",
+  // more than two modes can follow...
+];
+
 function App() {
+  // const [mode, setMode] = useState(modes[0])
+  // const theme = getTheme(mode)
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
