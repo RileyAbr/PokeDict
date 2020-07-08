@@ -104,8 +104,8 @@ function Navigation(props) {
   };
 
   const clearInput = (event) => {
-    setSearchValue("");
     document.getElementById("search-form").reset();
+    setShowClearButton(false);
   };
 
   return (
