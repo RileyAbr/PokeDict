@@ -19,11 +19,20 @@ const Button = styled(Link)`
   ${color};
   cursor: pointer;
   position: absolute;
-  &:active,
+  /* Hover and click animations */
+  box-shadow: 0 5px
+    ${(props) => {
+      return props.theme.colors.input.buttonShadow;
+    }};
   &:hover,
   &:focus {
-    outline: 0;
-    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
+    box-shadow: 0 3px
+      ${(props) => {
+        return props.theme.colors.input.buttonShadow;
+      }};
+  }
+  &:active {
+    box-shadow: none;
   }
 `;
 

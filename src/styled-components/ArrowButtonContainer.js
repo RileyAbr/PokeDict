@@ -22,6 +22,7 @@ const Button = styled(Link)`
     }
   }}
 
+/* Hover and click animations */
   box-shadow: 0 5px
     ${(props) => {
       return props.theme.colors.input.buttonShadow;

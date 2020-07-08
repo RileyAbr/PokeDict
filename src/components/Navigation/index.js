@@ -31,7 +31,6 @@ const SearchForm = styled.form`
   position: relative;
   &:focus-within {
     outline: 0;
-    box-shadow: 0px 0px 17px -8px rgba(255, 255, 255, 0.85);
   }
 `;
 
