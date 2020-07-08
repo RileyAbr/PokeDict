@@ -14,6 +14,14 @@ function ArrowButton(props) {
         borderRightWidth={[4, 5]}
         top={[15, 26]}
       />
+      <ArrowIcon
+        right={props.right}
+        padding={["4px", "5px"]}
+        borderColor={"border.white"}
+        borderBottomWidth={[4, 5]}
+        borderRightWidth={[4, 5]}
+        top={[15, 26]}
+      />
     </ArrowButtonContainer>
   );
 }
