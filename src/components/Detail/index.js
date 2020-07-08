@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { color } from "styled-system";
+import { color, typography } from "styled-system";
 
 // Components
 import PokeDetailCard from "./PokeDetailCard";
@@ -12,10 +12,14 @@ import BackButton from "../../styled-components/BackButton";
 
 const Masthead = styled.h1`
   text-align: center;
-  font-size: 5rem;
   padding: 0.5rem 0 1rem;
   width: 100%;
+  padding-top: 65px;
   ${color}
+  ${typography}
+  @media screen and (min-width: 40em) {
+    padding-top: 0;
+  }
 `;
 
 // Main Component
@@ -78,7 +82,9 @@ function Detail(props) {
             <ArrowIcon />
           </button> */}
 
-          <Masthead color={"font.white"}>{name}</Masthead>
+          <Masthead color={"font.white"} fontSize={["3rem", "5rem"]}>
+            {name}
+          </Masthead>
 
           <PokeDetailCard pokemon={pokemon} />
         </React.Fragment>

@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { color } from "styled-system";
+import { color, layout, typography } from "styled-system";
 
 import ArrowIcon from "./ArrowIcon";
 
 const Button = styled(Link)`
-  width: 70px;
-  height: 70px;
+  ${layout};
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   border-radius: 50px;
+  padding: 14px;
   top: 10px;
   left: 10px;
   border: none;
@@ -24,16 +27,18 @@ const Button = styled(Link)`
   }
 `;
 
+const BackLabel = styled.span`
+  ${color}
+  ${typography}
+`;
+
 function BackButton(props) {
   return (
     <Button
       bg={"input.buttonGreen"}
       fontFamily={"fontStandard"}
       to={props.to}
-      width={["35px", "70px"]}
-      height={["35px", "70px"]}
-      //   This is an odd line, but it essentially fixes an error with React not wanting custom props showing up in the inspector
-      hidebutton={props.hideButton.toString()}
+      hidebutton={props.hideButton}
     >
       <ArrowIcon
         right={props.right}
@@ -41,8 +46,10 @@ function BackButton(props) {
         borderColor={"border.white"}
         borderBottomWidth={[4, 5]}
         borderRightWidth={[4, 5]}
-        top={[10, 26]}
       />
+      <BackLabel fontSize={["1.3rem", "1.6rem"]} color={"font.white"}>
+        Back
+      </BackLabel>
     </Button>
   );
 }
