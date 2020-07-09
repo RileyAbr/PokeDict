@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { color, border } from "styled-system";
 
@@ -118,7 +118,10 @@ function PokeDetailCard(props) {
         </CardBio>
 
         {/* Profile section */}
-        <CardSubheading color={"font.white"} bg={"bg.homeGreen"}>
+        <CardSubheading
+          color={"font.white"}
+          bg={`type.${props.pokemon.types[0]}.bg.primary`}
+        >
           Profile
         </CardSubheading>
         <CardProfile>
