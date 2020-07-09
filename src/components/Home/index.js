@@ -39,7 +39,7 @@ function Home(props) {
   }, [props.match.params.page, props.match.params.searchValue]);
 
   return (
-    <React.Fragment>
+    <>
       {/* Navigation Section */}
       <Navigation
         currentPage={parseInt(props.match.params.page)}
@@ -64,7 +64,7 @@ function Home(props) {
       </GalleryWrapper>
 
       {/* <Footer /> */}
-    </React.Fragment>
+    </>
   );
 }
 
