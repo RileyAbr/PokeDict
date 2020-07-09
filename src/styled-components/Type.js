@@ -18,9 +18,9 @@ const TypeBox = styled.div`
 function Type(props) {
   return (
     <TypeBox
-      color={`typeColors.${props.type}`}
-      bg={`typeBgColors.${props.type}`}
-      borderColor={`typeColors.${props.type}`}
+      color={`type.${props.type}.bg.primary`}
+      bg={`type.${props.type}.bg.secondary`}
+      borderColor={`type.${props.type}.bg.primary`}
     >
       {props.type}
     </TypeBox>
