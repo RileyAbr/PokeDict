@@ -43,12 +43,7 @@ const BackLabel = styled.span`
 
 function BackButton(props) {
   return (
-    <Button
-      bg={"input.buttonGreen"}
-      fontFamily={"fontStandard"}
-      to={props.to}
-      hidebutton={props.hideButton}
-    >
+    <Button bg={"input.buttonGreen"} fontFamily={"fontStandard"} to={props.to}>
       <ArrowIcon
         right={props.right}
         padding={["4px", "5px"]}

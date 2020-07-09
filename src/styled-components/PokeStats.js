@@ -6,14 +6,12 @@ import { color } from "styled-system";
 const maxStats = 255;
 
 const PokeStatsBox = styled.div`
-  padding: 15px 5px;
+  padding: 18px 5px;
   min-width: 200px;
 `;
 
 const Stat = styled.div`
   padding: 2px 0;
-  /* display: flex;
-  flex-flow: row nowrap; */
 `;
 
 const StatBarContainer = styled.div`
@@ -34,7 +32,7 @@ function PokeStats(props) {
     <PokeStatsBox>
       {props.stats &&
         Object.entries(props.stats).map(([key, value]) => (
-          <Stat>
+          <Stat key={key}>
             {key}: {value}
             <StatBarContainer>
               <StatBar
