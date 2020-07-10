@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    transition: background 0.75s ease-in-out;
 }
 
 /* Removes all link styling, might be too drastic and need changes later */

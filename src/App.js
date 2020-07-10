@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { color, typography } from "styled-system";
@@ -17,23 +17,27 @@ const Main = styled.main`
   padding-bottom: 2.5rem;
 `;
 
-// options for different color modes
-const modes = [
-  "light",
-  "dark",
-  // more than two modes can follow...
-];
-
 function App() {
-  // const [mode, setMode] = useState(modes[0])
-  // const theme = getTheme(mode)
+  const [typeTheme, setTypeTheme] = useState("");
+
+  const pageTheme = { ...theme.colors, ...theme.colors.type[typeTheme] };
+  theme.colors = pageTheme;
+
+  const handleDetailNavigation = (type) => {
+    setTypeTheme(type);
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Main bg={"bg.homeGreen"} fontFamily={"fontStandard"}>
+        <Main bg={"bg.primary"} fontFamily={"fontStandard"}>
           <Switch>
-            <Route path="/pokemon/:name" component={Detail}></Route>
+            <Route
+              path="/pokemon/:name"
+              render={() => (
+                <Detail onDetailNavigation={handleDetailNavigation} />
+              )}
+            ></Route>
             <Route path="/home/:page" component={Home} exact></Route>
             <Route path="/home/:page/:searchValue" component={Home}></Route>
             <Route exact path="/">
