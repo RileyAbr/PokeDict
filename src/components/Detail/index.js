@@ -55,10 +55,12 @@ function Detail(props) {
         .get(`https://intern-pokedex.myriadapps.com/api/v1/pokemon/${id}`)
         .then((response) => {
           const pokemon = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
+          let date = new Date();
+          date.setDate(date.getDate() + 1);
           setPokemon(pokemon);
           const mainType = pokemon.types[0];
+          document.cookie = `type=${mainType}; expires=${date}`;
           props.onDetailNavigation(mainType);
-          console.log(mainType);
           setPokemonLoaded(true);
         });
     };

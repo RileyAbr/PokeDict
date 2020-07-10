@@ -9,6 +9,9 @@ import Home from "./components/Home";
 import Detail from "./components/Detail";
 import Footer from "./styled-components/Footer";
 
+// Utilities Import
+import { getCookieValue } from "./Utils";
+
 // The background box that contains the entire SPA
 const Main = styled.main`
   min-height: 100vh;
@@ -18,7 +21,9 @@ const Main = styled.main`
 `;
 
 function App() {
-  const [typeTheme, setTypeTheme] = useState("");
+  const [typeTheme, setTypeTheme] = useState(getCookieValue("type"));
+
+  console.log(getCookieValue("type"));
 
   const pageTheme = { ...theme.colors, ...theme.colors.type[typeTheme] };
   theme.colors = pageTheme;

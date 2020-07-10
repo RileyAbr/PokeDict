@@ -23,3 +23,9 @@ export const forwardPageCalculation = (currentPage, maxPages, searchValue) => {
 export const capitalizeString = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const getCookieValue = (cookieName) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${cookieName}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+};
