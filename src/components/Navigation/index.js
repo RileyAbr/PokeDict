@@ -85,7 +85,6 @@ function Navigation(props) {
   }`;
 
   useEffect(() => {
-    console.log(searchValue);
     if (searchValue !== "") {
       setShowClearButton(true);
     } else {
@@ -121,7 +120,7 @@ function Navigation(props) {
         onSubmit={handleInputSubmit}
         autoComplete="off"
         id="search-form"
-        bg={"input.buttonGreen"}
+        bg={"bg.inputs"}
       >
         <SearchInput
           type="text"
@@ -129,7 +128,7 @@ function Navigation(props) {
           aria-label="Search for a specific pokemon"
           //   size="15"
           color={"font.white"}
-          bg={"input.buttonGreen"}
+          bg={"bg.inputs"}
           fontSize={["3rem", "5rem"]}
           onChange={handleInputChange}
         ></SearchInput>

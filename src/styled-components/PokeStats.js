@@ -36,7 +36,7 @@ function PokeStats(props) {
             {key}: {value}
             <StatBarContainer>
               <StatBar
-                bg={"bg.homeGreen"}
+                bg={"bg.primary"}
                 statpercent={Math.round((value / maxStats) * 100)}
               />
             </StatBarContainer>

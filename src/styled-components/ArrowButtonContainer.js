@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { color, typography, layout, shadow } from "styled-system";
+import { color, typography, layout } from "styled-system";
 
 import theme from "../theme";
 
@@ -25,12 +25,12 @@ const Button = styled(Link)`
 /* Hover and click animations */
   box-shadow: 0 5px
     ${(props) => {
-      return props.theme.colors.input.buttonShadow;
+      return props.theme.colors.bg.inputsShadow;
     }};
 &:hover,
 &:focus {
     box-shadow: 0 3px ${(props) => {
-      return props.theme.colors.input.buttonShadow;
+      return props.theme.colors.bg.inputsShadow;
     }};
 }
 &:active {
@@ -45,7 +45,7 @@ const Button = styled(Link)`
 function ArrowButtonContainer(props) {
   return (
     <Button
-      bg={"input.buttonGreen"}
+      bg={"bg.inputs"}
       fontFamily={"fontStandard"}
       to={props.to}
       width={["45px", "70px"]}

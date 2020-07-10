@@ -35,7 +35,7 @@ const CardSprite = styled.img`
 // Main Component
 function PokeCard(props) {
   return (
-    <Link bg={"bg.homeGreen"} to={`/pokemon/${props.name}`}>
+    <Link bg={"bg.primary"} to={`/pokemon/${props.name}`}>
       <Card bg={"bg.cardWhite"} fontFamily={"fontStandard"}>
         {/* Pokemon name */}
         <CardName borderColor={"border.grey"}>{props.name}</CardName>

@@ -49,7 +49,7 @@ const FooterDivider = styled.span`
 
 function Footer(props) {
   return (
-    <FooterBox color={"font.white"} bg={"input.buttonGreen"}>
+    <FooterBox color={"font.white"} bg={"bg.inputs"}>
       <FooterInternalLink color={"font.grey"} to={"/"}>
         Home{" "}
       </FooterInternalLink>{" "}

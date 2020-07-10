@@ -22,13 +22,13 @@ const Button = styled(Link)`
   /* Hover and click animations */
   box-shadow: 0 5px
     ${(props) => {
-      return props.theme.colors.input.buttonShadow;
+      return props.theme.colors.bg.inputsShadow;
     }};
   &:hover,
   &:focus {
     box-shadow: 0 3px
       ${(props) => {
-        return props.theme.colors.input.buttonShadow;
+        return props.theme.colors.bg.inputsShadow;
       }};
   }
   &:active {
@@ -43,7 +43,7 @@ const BackLabel = styled.span`
 
 function BackButton(props) {
   return (
-    <Button bg={"input.buttonGreen"} fontFamily={"fontStandard"} to={props.to}>
+    <Button bg={"bg.inputs"} fontFamily={"fontStandard"} to={props.to}>
       <ArrowIcon
         right={props.right}
         padding={["4px", "5px"]}
