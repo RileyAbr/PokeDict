@@ -72,10 +72,6 @@ function Detail(props) {
     if (idLoaded) {
       getPokemon();
     }
-
-    return () => {
-      //   isCancelled = true;
-    };
   }, [props, id, name, idLoaded]);
 
   return (

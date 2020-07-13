@@ -16,6 +16,7 @@ const Card = styled.article`
   &:focus {
     transform: scale(1.1);
   }
+  transition: transform 0.075s ease-in;
 `;
 
 const CardName = styled.h1`
