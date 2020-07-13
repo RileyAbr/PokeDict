@@ -9,6 +9,7 @@ import PokeDetailCard from "./PokeDetailCard";
 
 // Styled Components
 import BackButton from "../../styled-components/BackButton";
+import Loading from "../../styled-components/Loading";
 
 const Masthead = styled.h1`
   text-align: center;
@@ -82,7 +83,7 @@ function Detail(props) {
       <BackButton />
 
       {!pokemonLoaded ? (
-        <div>Loading...</div>
+        <Loading />
       ) : (
         <>
           <Masthead color={"font.white"} fontSize={["3rem", "5rem"]}>

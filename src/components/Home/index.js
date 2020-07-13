@@ -6,6 +6,9 @@ import styled from "styled-components";
 import PokeCard from "../PokeCard";
 import Navigation from "../Navigation";
 
+// Styled Components
+import Loading from "../../styled-components/Loading";
+
 const GalleryWrapper = styled.div`
   margin: 0 4%;
   display: flex;
@@ -50,7 +53,7 @@ function Home(props) {
       <GalleryWrapper>
         {/* Loads a temporary loading component if no data is available yet */}
         {!pokemonListLoaded ? (
-          <div>Loading...</div>
+          <Loading />
         ) : (
           pokemonList.map((element) => (
             <PokeCard
