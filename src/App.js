@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import { color, typography } from "styled-system";
@@ -22,8 +22,6 @@ const Main = styled.main`
 
 function App() {
   const [typeTheme, setTypeTheme] = useState(getCookieValue("type"));
-
-  console.log(getCookieValue("type"));
 
   const pageTheme = { ...theme.colors, ...theme.colors.type[typeTheme] };
   theme.colors = pageTheme;

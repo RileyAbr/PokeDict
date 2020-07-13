@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { color, layout, typography } from "styled-system";
 
 import ArrowIcon from "./ArrowIcon";
 
-const Button = styled(Link)`
+const Button = styled.button`
   ${layout};
   display: flex;
   flex-flow: row nowrap;
@@ -42,8 +42,14 @@ const BackLabel = styled.span`
 `;
 
 function BackButton(props) {
+  const history = useHistory();
+
   return (
-    <Button bg={"bg.inputs"} fontFamily={"fontStandard"} to={props.to}>
+    <Button
+      bg={"bg.inputs"}
+      fontFamily={"fontStandard"}
+      onClick={() => history.goBack()}
+    >
       <ArrowIcon
         right={props.right}
         padding={["4px", "5px"]}
