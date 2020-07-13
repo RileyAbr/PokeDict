@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const LoadingBar = styled.p`
+const LoadingBar = styled.div`
   width: 100%;
   text-align: center;
   font-size: 1.75rem;
@@ -42,7 +42,7 @@ function LoadingIcon() {
         <g id="Layer">
           <path
             id="Layer"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             fill="#ffffff"
             d="M477.44 375.69C465.38 434.93 412.98 479.51 350.18 479.51C287.37 479.51 234.98 434.93 222.92 375.69L42.41 375.69C55.64 534.08 188.37 658.51 350.18 658.51C511.99 658.51 644.72 534.08 657.95 375.69L477.44 375.69Z"
           />
