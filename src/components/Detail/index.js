@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { color, typography } from "styled-system";
 
@@ -27,10 +27,8 @@ function Detail(props) {
   const [name] = useState(props.match.params.name);
   const [id, setID] = useState(1);
   const [pokemon, setPokemon] = useState("");
-  const [galleryPreviousPage, setGalleryPreviousPage] = useState(1);
   const [idLoaded, setIDLoaded] = useState(false);
   const [pokemonLoaded, setPokemonLoaded] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     const getPokemonID = () => {
@@ -43,9 +41,7 @@ function Detail(props) {
         .then((response) => {
           const id = response.data.data[0].id; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
           // The API returns an array of pokemon that all match the name string. When there is only a single match (a perfect name), there will be a single pokemon at index 0
-          const galleryPreviousPage = Math.ceil(response.data.data[0].id / 15);
           setID(id);
-          setGalleryPreviousPage(galleryPreviousPage);
           setIDLoaded(true);
         });
     };
@@ -55,11 +51,15 @@ function Detail(props) {
         .get(`https://intern-pokedex.myriadapps.com/api/v1/pokemon/${id}`)
         .then((response) => {
           const pokemon = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-          let date = new Date();
-          date.setDate(date.getDate() + 1);
+          const date = new Date();
+          const expiryDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + 1
+          );
           setPokemon(pokemon);
           const mainType = pokemon.types[0];
-          document.cookie = `type=${mainType}; expires=${date}`;
+          document.cookie = `type=${mainType}; expires=${expiryDate}`;
           props.onDetailNavigation(mainType);
           setPokemonLoaded(true);
         });
@@ -71,18 +71,15 @@ function Detail(props) {
     if (idLoaded) {
       getPokemon();
     }
+
+    return () => {
+      //   isCancelled = true;
+    };
   }, [props, id, name, idLoaded]);
 
   return (
     <>
-      <BackButton
-        to={"/home/" + galleryPreviousPage}
-        hideButton={false}
-      ></BackButton>
-
-      {/* <button onClick={history.goBack()}>
-            <ArrowIcon />
-          </button> */}
+      <BackButton />
 
       {!pokemonLoaded ? (
         <div>Loading...</div>
