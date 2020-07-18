@@ -24,6 +24,7 @@ function Home(props) {
     const [pokemonList, setPokemonList] = useState([]);
     const [maxPages, setMaxPages] = useState(Number.MAX_SAFE_INTEGER);
     const [pokemonListLoaded, setPokemonListLoaded] = useState(false);
+    const maxPokemonPerPage = 20;
 
     useEffect(() => {
         //   Connects to the API
@@ -46,18 +47,20 @@ function Home(props) {
         axios
             .get("https://pokeapi.co/api/v2/pokemon", {
                 params: {
-                    limit: 20,
-                    offset: "",
+                    limit: maxPokemonPerPage,
+                    offset: maxPokemonPerPage * (props.match.params.page - 1),
                 },
             })
             .then((response) => {
                 const pokemonList = response.data.results; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-                // const maxPages = response.data.meta.last_page;
+                const maxPages = Math.ceil(
+                    response.data.count / maxPokemonPerPage
+                );
                 setPokemonList(pokemonList);
-                // setMaxPages(maxPages);
+                setMaxPages(maxPages);
                 setPokemonListLoaded(true);
             });
-    }, [props.match.params.page, props.match.params.searchValue]);
+    }, [props.match.params.page]);
 
     return (
         <>
