@@ -1,3 +1,3 @@
-# Bushel Front-End Pokédex Challenge
+# PokéDictionary
 
-Created by Riley Abrahamson for the Summer 2020 Internship Program
+Pokémon viewer built in React atop the public PokéAPI service.
