@@ -11,6 +11,9 @@ import PokeDetailCard from "./PokeDetailCard";
 import BackButton from "../../styled-components/BackButton";
 import Loading from "../../styled-components/Loading";
 
+// Utils import
+import { capitalizeString } from "../../Utils";
+
 const Masthead = styled.h1`
     text-align: center;
     padding: 0.5rem 0 1rem;
@@ -28,26 +31,11 @@ function Detail(props) {
     const [name] = useState(props.match.params.name);
     const [id, setID] = useState(1);
     const [pokemon, setPokemon] = useState("");
-    const [idLoaded, setIDLoaded] = useState(false);
     const [pokemonLoaded, setPokemonLoaded] = useState(false);
+    const [species, setSpecies] = useState("");
+    const [speciesLoaded, setSpeciesLoaded] = useState(false);
 
     useEffect(() => {
-        // const getPokemonID = () => {
-        //     axios
-        //         .get(`https://pokeapi.co/api/v2/pokemon/${name}`, {
-        //             //   params: {
-        //             //     name: name,
-        //             //   },
-        //         })
-        //         .then((response) => {
-        //             // const id = response.data.data[0].id; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        //             // // The API returns an array of pokemon that all match the name string. When there is only a single match (a perfect name), there will be a single pokemon at index 0
-        //             // setID(id);
-        //             // setIDLoaded(true);
-        //             console.log(response.data);
-        //         });
-        // };
-
         const getPokemon = () => {
             axios
                 .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -63,34 +51,45 @@ function Detail(props) {
                     const mainType = pokemon.types[0].type.name;
                     // document.cookie = `type=${mainType}; expires=${expiryDate}`;
                     props.onDetailNavigation(mainType);
-                    // // setPokemonLoaded(true);
-                    console.log(pokemon);
+                    setPokemonLoaded(true);
                 });
         };
 
-        // if (!idLoaded) {
-        //     getPokemonID();
-        // }
-        // if (idLoaded) {
+        const getPokemonSpeciesData = () => {
+            axios
+                .get(`https://pokeapi.co/api/v2/pokemon-species/${name}`)
+                .then((response) => {
+                    const speciesData = response.data;
+                    setSpecies(speciesData);
+                    setSpeciesLoaded(true);
+                });
+        };
 
-        // }
+        if (!pokemonLoaded) {
+            getPokemon();
+        }
 
-        getPokemon();
-    }, [props, id, name, idLoaded]);
+        if (pokemonLoaded) {
+            getPokemonSpeciesData();
+        }
+    }, [name, pokemonLoaded, props]);
 
     return (
         <>
             <BackButton />
 
-            {!pokemonLoaded ? (
+            {!speciesLoaded ? (
                 <Loading />
             ) : (
                 <>
                     <Masthead color={"font.white"} fontSize={["3rem", "5rem"]}>
-                        {name}
+                        {capitalizeString(name)}
                     </Masthead>
 
-                    <PokeDetailCard pokemon={pokemon} />
+                    <PokeDetailCard
+                        pokemon={pokemon}
+                        pokemonSpecies={species}
+                    />
                 </>
             )}
         </>
