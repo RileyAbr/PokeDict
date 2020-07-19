@@ -78,7 +78,7 @@ function Home(props) {
                 ) : (
                     pokemonList.map((element) => (
                         <PokeCard
-                            key={element.id}
+                            key={getPokemonIdFromUrl(element.url)}
                             name={element.name}
                             id={getPokemonIdFromUrl(element.url)}
                         />
