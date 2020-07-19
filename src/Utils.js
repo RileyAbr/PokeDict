@@ -28,6 +28,14 @@ export const getPokemonIdFromUrl = (url) => {
     return url.slice(34, url.length - 1);
 };
 
+export const getPokemonDescriptionFromLanguage = (language, descriptions) => {
+    const filteredDescriptionArray = descriptions.filter(
+        (element) => element.language.name === language
+    );
+
+    return filteredDescriptionArray.pop();
+};
+
 export const getCookieValue = (cookieName) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${cookieName}=`);
