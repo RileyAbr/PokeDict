@@ -22,7 +22,7 @@ const GalleryWrapper = styled.div`
 
 function Home(props) {
     const [pokemonList, setPokemonList] = useState([]);
-    const [maxPokemon, setMaxPokemon] = useState(1200); // Hardcoded to the amount above the Gen 7 Pokedex totals, but is assigned after the first API call is made
+    const [maxPokemon, setMaxPokemon] = useState(1200); // Hardcoded higher than the Gen 7 Pokedex total, but is assigned dynamically after the first API call is made
     const [maxPages, setMaxPages] = useState(Number.MAX_SAFE_INTEGER);
     const [pokemonListLoaded, setPokemonListLoaded] = useState(false);
     const maxPokemonPerPage = 20;
