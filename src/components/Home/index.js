@@ -22,45 +22,54 @@ const GalleryWrapper = styled.div`
 
 function Home(props) {
     const [pokemonList, setPokemonList] = useState([]);
+    const [maxPokemon, setMaxPokemon] = useState(1200); // Hardcoded to the amount above the Gen 7 Pokedex totals, but is assigned after the first API call is made
     const [maxPages, setMaxPages] = useState(Number.MAX_SAFE_INTEGER);
     const [pokemonListLoaded, setPokemonListLoaded] = useState(false);
     const maxPokemonPerPage = 20;
 
     useEffect(() => {
-        //   Connects to the API
-        // axios
-        //   .get("https://intern-pokedex.myriadapps.com/api/v1/pokemon/", {
-        //     params: {
-        //       page: props.match.params.page,
-        //       name: props.match.params.searchValue,
-        //     },
-        //   })
-        //   .then((response) => {
-        //     const pokemonList = response.data.data; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-        //     const maxPages = response.data.meta.last_page;
+        if (props.match.params.searchValue) {
+            axios
+                .get("https://pokeapi.co/api/v2/pokemon", {
+                    params: {
+                        limit: maxPokemon,
+                    },
+                })
+                .then((response) => {
+                    const pokemonList = response.data.results.filter(
+                        (pokemon) =>
+                            pokemon.name.includes(
+                                props.match.params.searchValue
+                            )
+                    );
 
-        //     setPokemonList(pokemonList);
-        //     setMaxPages(maxPages);
-        //     setPokemonListLoaded(true);
-        //   });
-
-        axios
-            .get("https://pokeapi.co/api/v2/pokemon", {
-                params: {
-                    limit: maxPokemonPerPage,
-                    offset: maxPokemonPerPage * (props.match.params.page - 1),
-                },
-            })
-            .then((response) => {
-                const pokemonList = response.data.results; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
-                const maxPages = Math.ceil(
-                    response.data.count / maxPokemonPerPage
-                );
-                setPokemonList(pokemonList);
-                setMaxPages(maxPages);
-                setPokemonListLoaded(true);
-            });
-    }, [props.match.params.page]);
+                    const maxPages = 1;
+                    setPokemonList(pokemonList);
+                    setMaxPages(maxPages);
+                    setPokemonListLoaded(true);
+                });
+        } else {
+            axios
+                .get("https://pokeapi.co/api/v2/pokemon", {
+                    params: {
+                        limit: maxPokemonPerPage,
+                        offset:
+                            maxPokemonPerPage * (props.match.params.page - 1),
+                    },
+                })
+                .then((response) => {
+                    const pokemonList = response.data.results; // The first 'data' refers to the value within the axios response. The second refers to the data key in the API response.
+                    const maxPokemon = response.data.count;
+                    const maxPages = Math.ceil(
+                        response.data.count / maxPokemonPerPage
+                    );
+                    setPokemonList(pokemonList);
+                    setMaxPokemon(maxPokemon);
+                    setMaxPages(maxPages);
+                    setPokemonListLoaded(true);
+                });
+        }
+    }, [maxPokemon, props.match.params.page, props.match.params.searchValue]);
 
     return (
         <>
