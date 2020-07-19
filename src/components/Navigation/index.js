@@ -88,12 +88,12 @@ function Navigation(props) {
     }`;
 
     useEffect(() => {
-        if (searchValue !== "") {
-            setShowClearButton(true);
-        } else {
+        if (props.match.params.searchValue === undefined) {
             setShowClearButton(false);
+        } else {
+            setShowClearButton(true);
         }
-    }, [searchValue]);
+    }, [props.match.params.searchValue]);
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
@@ -129,14 +129,14 @@ function Navigation(props) {
                     type="text"
                     placeholder="PokéDict"
                     aria-label="Search for a specific pokemon"
-                    //   size="15"
                     color={"font.white"}
                     bg={"bg.inputs"}
+                    value={props.match.params.searchValue}
                     fontSize={["3rem", "5rem"]}
                     onChange={handleInputChange}
                 ></SearchInput>
                 <ClearButton
-                    to={"/home/" + 1}
+                    to={"/home/"}
                     onClick={clearInput}
                     color={"font.white"}
                     fontSize={["1rem", "2.5rem"]}
