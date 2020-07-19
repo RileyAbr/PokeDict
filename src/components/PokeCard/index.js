@@ -48,9 +48,6 @@ function PokeCard(props) {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
                     alt={props.name}
                 />
-
-                {/* Pokemon Types */}
-                {/* <Types firstType={props.types[0]} secondType={props.types[1]} /> */}
             </Card>
         </Link>
     );
