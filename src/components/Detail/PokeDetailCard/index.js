@@ -5,12 +5,14 @@ import { color, border } from "styled-system";
 // Styled components
 import Types from "../../../styled-components/Types";
 import PokeStats from "../../../styled-components/PokeStats";
+import PokeGenderRates from "../../../styled-components/PokemonGenderRates";
 
 // Utility Functions
 import {
     capitalizeString,
     getPokemonDescriptionFromLanguage,
 } from "../../../Utils";
+import PokemonGenderRates from "../../../styled-components/PokemonGenderRates";
 
 const DetailCard = styled.article`
     ${color};
@@ -95,6 +97,8 @@ const CardTableItem = styled.td`
 
 // Main componenet
 function PokeDetailCard(props) {
+    console.log(props.pokemonSpecies.gender_rate);
+
     const pokemonGenus = getPokemonDescriptionFromLanguage(
         "en",
         props.pokemonSpecies.genera
@@ -158,38 +162,48 @@ function PokeDetailCard(props) {
                             </tr>
                             <tr>
                                 <CardTableItem>Catch Rate:</CardTableItem>
-                                <CardTableItem>catch_rate</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemonSpecies.capture_rate}
+                                </CardTableItem>
                             </tr>
                             <tr>
                                 <CardTableItem>Egg Groups:</CardTableItem>
                                 <CardTableItem>
-                                    {props.pokemon
-                                        ? [
-                                              "test",
-                                              "test",
-                                              "test",
-                                          ].map((element) => (
-                                              <div key={element}>
-                                                  {capitalizeString(element)}
-                                              </div>
-                                          ))
+                                    {props.pokemonSpecies.egg_groups
+                                        ? props.pokemonSpecies.egg_groups.map(
+                                              (group) => (
+                                                  <div key={group.name}>
+                                                      {capitalizeString(
+                                                          group.name
+                                                      )}
+                                                  </div>
+                                              )
+                                          )
                                         : ""}
                                 </CardTableItem>
                             </tr>
                             <tr>
                                 <CardTableItem>Abilities</CardTableItem>
                                 <CardTableItem>
-                                    {props.pokemon
-                                        ? [
-                                              "abilities",
-                                              "abilities",
-                                              "abilities",
-                                          ].map((element) => (
-                                              <div key={element}>
-                                                  {capitalizeString(element)}
-                                              </div>
-                                          ))
+                                    {props.pokemon.abilities
+                                        ? props.pokemon.abilities.map(
+                                              (ability) => (
+                                                  <div
+                                                      key={ability.ability.name}
+                                                  >
+                                                      {capitalizeString(
+                                                          ability.ability.name
+                                                      )}
+                                                  </div>
+                                              )
+                                          )
                                         : ""}
+                                </CardTableItem>
+                            </tr>
+                            <tr>
+                                <CardTableItem>Base EXP:</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemon.base_experience}
                                 </CardTableItem>
                             </tr>
                         </tbody>
@@ -205,7 +219,15 @@ function PokeDetailCard(props) {
                             </tr>
                             <tr>
                                 <CardTableItem>Gender Ratio:</CardTableItem>
-                                <CardTableItem>gender_ratio</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemonSpecies && (
+                                        <PokemonGenderRates
+                                            gender_rate={
+                                                props.pokemonSpecies.gender_rate
+                                            }
+                                        />
+                                    )}
+                                </CardTableItem>
                             </tr>
                             <tr>
                                 <CardTableItem>Hatch Steps:</CardTableItem>
@@ -214,6 +236,12 @@ function PokeDetailCard(props) {
                             <tr>
                                 <CardTableItem>EVs:</CardTableItem>
                                 <CardTableItem>evs</CardTableItem>
+                            </tr>
+                            <tr>
+                                <CardTableItem>Generation:</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemonSpecies.generation.name}
+                                </CardTableItem>
                             </tr>
                         </tbody>
                     </table>

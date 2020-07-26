@@ -36,6 +36,14 @@ export const getPokemonDescriptionFromLanguage = (language, descriptions) => {
     return filteredDescriptionArray.pop();
 };
 
+export const calculatePokemonMaleRate = (gender_rate) => {
+    return (100 / 8) * (8 - gender_rate);
+};
+
+export const calculatePokemonFemaleRate = (gender_rate) => {
+    return (100 / 8) * gender_rate;
+};
+
 export const getCookieValue = (cookieName) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${cookieName}=`);
