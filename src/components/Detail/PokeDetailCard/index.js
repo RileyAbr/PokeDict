@@ -5,7 +5,7 @@ import { color, border } from "styled-system";
 // Styled components
 import Types from "../../../styled-components/Types";
 import PokeStats from "../../../styled-components/PokeStats";
-import PokeGenderRates from "../../../styled-components/PokemonGenderRates";
+import PokemonGenderRates from "../../../styled-components/PokemonGenderRates";
 
 // Utility Functions
 import {
@@ -13,7 +13,6 @@ import {
     getPokemonDescriptionFromLanguage,
     getPokemonGeneration,
 } from "../../../Utils";
-import PokemonGenderRates from "../../../styled-components/PokemonGenderRates";
 
 const DetailCard = styled.article`
     ${color};
@@ -53,7 +52,7 @@ const CardBody = styled.div`
 
 const CardSprite = styled.img`
     width: 200px;
-    height: auto;
+    height: 200px;
     &:hover,
     &:active,
     &:focus {
@@ -134,10 +133,10 @@ function PokeDetailCard(props) {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemon.id}.png`}
                     alt={props.pokemon.name}
                 />
-                {/* <PokeStats
+                <PokeStats
                     stats={props.pokemon.stats}
                     borderColor={"border.grey"}
-                /> */}
+                />
 
                 <CardBio>
                     <CardGenus>The {pokemonGenus}</CardGenus>

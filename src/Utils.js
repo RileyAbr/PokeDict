@@ -40,6 +40,25 @@ export const getPokemonGeneration = (generation_string) => {
     return generation_string.slice(11).toUpperCase();
 };
 
+export const getPokemonStatAbbreviation = (stat) => {
+    switch (stat) {
+        case "hp":
+            return "HP";
+        case "attack":
+            return "AT";
+        case "defense":
+            return "DF";
+        case "special-attack":
+            return "SA";
+        case "special-defense":
+            return "SD";
+        case "speed":
+            return "SP";
+        default:
+            break;
+    }
+};
+
 export const calculatePokemonMaleRate = (gender_rate) => {
     return (100 / 8) * (8 - gender_rate);
 };
