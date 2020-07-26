@@ -231,7 +231,9 @@ function PokeDetailCard(props) {
                             </tr>
                             <tr>
                                 <CardTableItem>Hatch Steps:</CardTableItem>
-                                <CardTableItem>hatch_steps</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemonSpecies.hatch_counter}
+                                </CardTableItem>
                             </tr>
                             <tr>
                                 <CardTableItem>EVs:</CardTableItem>
