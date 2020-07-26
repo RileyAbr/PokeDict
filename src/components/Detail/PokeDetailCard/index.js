@@ -11,6 +11,7 @@ import PokeGenderRates from "../../../styled-components/PokemonGenderRates";
 import {
     capitalizeString,
     getPokemonDescriptionFromLanguage,
+    getPokemonGeneration,
 } from "../../../Utils";
 import PokemonGenderRates from "../../../styled-components/PokemonGenderRates";
 
@@ -95,10 +96,8 @@ const CardTableItem = styled.td`
     }
 `;
 
-// Main componenet
+// Main component
 function PokeDetailCard(props) {
-    console.log(props.pokemonSpecies.gender_rate);
-
     const pokemonGenus = getPokemonDescriptionFromLanguage(
         "en",
         props.pokemonSpecies.genera
@@ -201,9 +200,11 @@ function PokeDetailCard(props) {
                                 </CardTableItem>
                             </tr>
                             <tr>
-                                <CardTableItem>Base EXP:</CardTableItem>
+                                <CardTableItem>Generation:</CardTableItem>
                                 <CardTableItem>
-                                    {props.pokemon.base_experience}
+                                    {getPokemonGeneration(
+                                        props.pokemonSpecies.generation.name
+                                    )}
                                 </CardTableItem>
                             </tr>
                         </tbody>
@@ -236,13 +237,15 @@ function PokeDetailCard(props) {
                                 </CardTableItem>
                             </tr>
                             <tr>
-                                <CardTableItem>EVs:</CardTableItem>
-                                <CardTableItem>evs</CardTableItem>
+                                <CardTableItem>Base Happiness:</CardTableItem>
+                                <CardTableItem>
+                                    {props.pokemonSpecies.base_happiness}
+                                </CardTableItem>
                             </tr>
                             <tr>
-                                <CardTableItem>Generation:</CardTableItem>
+                                <CardTableItem>Base EXP:</CardTableItem>
                                 <CardTableItem>
-                                    {props.pokemonSpecies.generation.name}
+                                    {props.pokemon.base_experience}
                                 </CardTableItem>
                             </tr>
                         </tbody>

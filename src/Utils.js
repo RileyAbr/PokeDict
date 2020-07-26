@@ -36,6 +36,10 @@ export const getPokemonDescriptionFromLanguage = (language, descriptions) => {
     return filteredDescriptionArray.pop();
 };
 
+export const getPokemonGeneration = (generation_string) => {
+    return generation_string.slice(11).toUpperCase();
+};
+
 export const calculatePokemonMaleRate = (gender_rate) => {
     return (100 / 8) * (8 - gender_rate);
 };

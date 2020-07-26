@@ -3,7 +3,6 @@ import React from "react";
 import { calculatePokemonMaleRate, calculatePokemonFemaleRate } from "../Utils";
 
 function PokemonGenderRates(props) {
-    console.log(props.gender_rate);
     if (props.gender_rate === -1) {
         return (
             <>
