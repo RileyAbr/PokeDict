@@ -29,7 +29,6 @@ const Masthead = styled.h1`
 // Main Component
 function Detail(props) {
     const [name] = useState(props.match.params.name);
-    const [id, setID] = useState(1);
     const [pokemon, setPokemon] = useState("");
     const [pokemonLoaded, setPokemonLoaded] = useState(false);
     const [species, setSpecies] = useState("");
@@ -41,12 +40,12 @@ function Detail(props) {
                 .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
                 .then((response) => {
                     const pokemon = response.data;
-                    const date = new Date();
-                    const expiryDate = new Date(
-                        date.getFullYear(),
-                        date.getMonth(),
-                        date.getDate() + 1
-                    );
+                    // const date = new Date();
+                    // const expiryDate = new Date(
+                    //     date.getFullYear(),
+                    //     date.getMonth(),
+                    //     date.getDate() + 1
+                    // );
                     setPokemon(pokemon);
                     const mainType = pokemon.types[0].type.name;
                     // document.cookie = `type=${mainType}; expires=${expiryDate}`;
